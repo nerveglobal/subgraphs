@@ -4,7 +4,7 @@ const APIURL = "https://api.thegraph.com/subgraphs/name/username/subgraphname";
 
 const tasksQuery = `
   query {
-    tasks {
+    tasks(orderBy: amount, orderDirection: desc) {
       id
       initiatorAddress
       recipientAddress
@@ -43,7 +43,7 @@ const userTasksQuery = `
 
 const betsQuery = `
   query {
-    bets {
+    bets(orderBy: stakeA & stakeB, orderDirection: desc) {
       id
       initiatorAddress
       description

@@ -100,7 +100,7 @@ const client = new ApolloClient({
 });
 
 client.query({
-  query: gql(tasksQuery, userTasksQuery, betsQuery, userBetsQuery, userFavStatsQuery, userDashStatsQuery, userAchievementsQuery, globalStatsQuery)
+  query: gql(tasksQuery, userTasksQuery, betsQuery, userBetsQuery, globalStatsQuery)
 })
 .then(data => console.log("Subgraph data: ", data))
 .catch(err => { console.log("Error fetching data: ", err) });

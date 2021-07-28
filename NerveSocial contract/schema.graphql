@@ -1,0 +1,11 @@
+type UserDashStat @entity {
+  id: ID!
+  userName: String!
+  userlocation: String!
+  youtube: String!
+  twitter: String!
+  instagram: String!
+  tiktok: String!
+  twitch: String!
+  blacklist: [Bytes!]!
+}

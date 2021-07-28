@@ -1,11 +1,11 @@
-type Task @entity {
+type Challenge @entity {
   id: ID!
   initiatorAddress: Bytes!
   recipientAddress: Bytes!
   amount: BigInt!
   entranceAmount: BigInt!
   description: String!
-  endTask: BigInt!
+  endChallenge: BigInt!
   positiveVotes: BigInt
   negativeVotes: BigInt
   participants: BigInt!
@@ -13,9 +13,6 @@ type Task @entity {
   executed: Boolean
   finished: Boolean
   canceled: Boolean
-  hashtag1: String
-  hashtag2: String
-  hashtag3: String 
   language: String!
   proofLink: String
 }
@@ -45,9 +42,6 @@ type Bet @entity {
   winnerPartyA: Boolean
   draw: Boolean
   failed: Boolean
-  hashtag1: String
-  hashtag2: String
-  hashtag3: String 
   language: String!
   proofLink: String
 }
@@ -72,37 +66,15 @@ type UserFavStat @entity {
 
 type UserDashStat @entity {
   id: ID!
-  userName: String!
-  displayAchievement: String!
-  youtube: String!
-  twitter: String!
-  instagram: String!
-  tiktok: String!
-  twitch: String!
-  tribute: BigInt!
-  profit: BigInt!
-  blacklist: [Bytes!]!
-}
-
-type UserAchievement @entity {
-  id: ID!
-  tasksCreated: BigInt!
-  tasksJoined: BigInt!
-  tasksVoted: BigInt!
-  betsCreated: BigInt!
-  betsJoined: BigInt!
-  betsFinished: BigInt!
-  accountCreation: BigInt!
-  seasonOneRank: BigInt!
-  seasonTwoRank: BigInt!
-  seasonThreeRank: BigInt!
+  spent: BigInt!
+  earned: BigInt!
 }
 
 type GlobalStat @entity {
   id: ID!
-  taskProfits: BigInt!
+  challengeEarnings: BigInt!
   users: BigInt!
-  taskCount: BigInt!
-  betProfit: BigInt!
+  challengeCount: BigInt!
+  betWinnings: BigInt!
   betCount: BigInt!
 }

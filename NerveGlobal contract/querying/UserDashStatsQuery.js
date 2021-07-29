@@ -6,16 +6,8 @@ const userDashStatsQuery = `
   query {
     userDashStats {
       id
-      userName
-      displayAchievement
-      youtube
-      twitter
-      instagram
-      tiktok
-      twitch
-      tribute
-      profit
-      blacklist
+      spent
+      earned
     }
   }
 `

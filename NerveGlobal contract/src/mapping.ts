@@ -123,7 +123,7 @@ export function handleChallengeJoined(event: ChallengeJoined): void {
   log.info('New UserChallenge entity created: {} - {}', [participant, challengeID])
   userChallenge.userAddress = event.params.participant
   userChallenge.userStake = event.params.amount
-  userChallenge.taskData = event.params.challengeID.toHex()
+  userChallenge.challangeData = event.params.challengeID.toHex()
   userChallenge.save()                                                       
 
 
@@ -247,7 +247,7 @@ export function handleRecipientRedeemed(event: RecipientRedeemed): void {
 }
 
   /******************************************/
-  /*              TaskProved                */
+  /*              ChallengeProved           */
   /******************************************/
 
 export function handleChallengeProved(event: ChallengeProved): void {

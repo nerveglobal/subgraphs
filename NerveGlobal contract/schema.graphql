@@ -17,7 +17,7 @@ type Challenge @entity {
   proofLink: String
 }
 
-type UserTask @entity {
+type UserChallenge @entity {
   id: ID!
   userAddress: Bytes!
   userStake: BigInt!

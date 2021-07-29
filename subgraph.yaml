@@ -1,12 +1,14 @@
 specVersion: 0.0.2
+repository: https://github.com/nerveglobal/subgraph
 schema:
   file: ./schema.graphql
 dataSources:
+  #NerveGlobal contract
   - kind: ethereum/contract
     name: NerveGlobal
     network: ropsten
     source:
-      address: "0xefAF2Fa34928576d127E82054a1BF92CdD5a15a5"
+      address: "XXX"
       abi: NerveGlobal
       startBlock: 10441829
     mapping:
@@ -20,7 +22,6 @@ dataSources:
         - UserBet
         - UserFavStat
         - UserDashStat
-        - UserAchievement
         - GlobalStat
       abis:
         - name: NerveGlobal
@@ -40,24 +41,45 @@ dataSources:
           handler: handleBetProved
         - event: BetRedeemed(indexed address,indexed uint256,uint256)
           handler: handleBetRedeemed
-        - event: DisplayAchievementChanged(indexed address,string)
-          handler: handleDisplayAchievementChanged
-        - event: NameRegistered(indexed address,bytes32)
-          handler: handleNameRegistered
         - event: RecipientRedeemed(indexed address,indexed uint256,uint256)
           handler: handleRecipientRedeemed
-        - event: SocialRegistered(indexed address,bytes32,uint256)
-          handler: handleSocialRegistered
         - event: TaskAdded(indexed address,indexed uint256,indexed address,uint256,string,uint256,string,string,string,string)
           handler: handleTaskAdded
         - event: TaskJoined(indexed address,indexed uint256,uint256)
           handler: handleTaskJoined
         - event: TaskProved(indexed uint256,string)
           handler: handleTaskProved
-        - event: UserBlacklisted(indexed address,address)
-          handler: handleUserBlacklisted
         - event: UserRedeemed(indexed address,indexed uint256,uint256)
           handler: handleUserRedeemed
         - event: Voted(indexed address,indexed uint256,bool,bool)
           handler: handleVoted
       file: ./src/mapping.ts
+      
+  #NerveSocial contract
+  - kind: ethereum/contract
+    name: NerveSocial
+    network: ropsten
+    source:
+      address: "XXX"
+      abi: NerveSocial
+      startBlock: 10441829
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - UserDashStat
+      abis:
+        - name: NerveGlobal
+          file: ./abis/NerveSocial.json
+      eventHandlers:
+        - event: NameRegistered(indexed address,bytes32)
+          handler: handleNameRegistered
+        - event: SocialRegistered(indexed address,string[],uint256[])
+          handler: handleSocialRegistered
+        - event: LocationRegistered(indexed address,uint256,uint256)
+          handler: handleLocationRegistered
+        - event: UserBlacklisted(indexed address,address)
+          handler: handleUserBlacklisted
+      file: ./src/mapping.ts
+

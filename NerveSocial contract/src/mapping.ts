@@ -1,9 +1,9 @@
 import { BigInt } from "@graphprotocol/graph-ts"
 import { log } from '@graphprotocol/graph-ts'
 import {
-  LocationRegistered,
   NameRegistered,
   SocialRegistered,
+  LocationRegistered,
   UserBlacklisted
 } from "../generated/NerveSocial/NerveSocial"
 import {
@@ -48,28 +48,6 @@ export function handleNameRegistered(event: NameRegistered): void {
   userDashStat.save()                                                            
 }
 
-  /******************************************/
-  /*             LocationRegistered         */
-  /******************************************/
-
-export function handleLocationRegistered(event: LocationRegistered): void {
-
-  let user = event.params.user.toHex()
-  
-  //  UserDashStat Entity
-  let userDashStat = UserDashStat.load(user)
-  if(userDashStat == null) {
-    initializeUserDashStat(user)
-    userDashStat = UserDashStat.load(user)
-    log.info('New UserDashStat entity created: {}', [user])
-  }
-  if(event.params.socialID == BigInt.fromI32(1))
-    userDashStat.userLatitude = event.params.latitude.toString()
-  if(event.params.socialID == BigInt.fromI32(2))
-    userDashStat.userLongitude = event.params.longitude.toString()
-  userDashStat.save()                                                            
-}
-  
   
   /******************************************/
   /*            SocialRegistered            */
@@ -98,6 +76,30 @@ export function handleSocialRegistered(event: SocialRegistered): void {
     userDashStat.youtube = event.params.registeredLink.toString()
   userDashStat.save()                                                         
 }
+
+
+/******************************************/
+  /*             LocationRegistered         */
+  /******************************************/
+
+export function handleLocationRegistered(event: LocationRegistered): void {
+
+  let user = event.params.user.toHex()
+  
+  //  UserDashStat Entity
+  let userDashStat = UserDashStat.load(user)
+  if(userDashStat == null) {
+    initializeUserDashStat(user)
+    userDashStat = UserDashStat.load(user)
+    log.info('New UserDashStat entity created: {}', [user])
+  }
+  if(event.params.socialID == BigInt.fromI32(1))
+    userDashStat.userLatitude = event.params.latitude.toString()
+  if(event.params.socialID == BigInt.fromI32(2))
+    userDashStat.userLongitude = event.params.longitude.toString()
+  userDashStat.save()                                                            
+}
+
 
   /******************************************/
   /*            UserBlacklisted             */

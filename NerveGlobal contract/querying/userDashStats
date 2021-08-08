@@ -1,0 +1,7 @@
+{
+  userDashStats(id:"myId") {
+  id
+  spent
+  earned
+  }
+}

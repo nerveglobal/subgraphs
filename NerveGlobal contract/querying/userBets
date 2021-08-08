@@ -1,0 +1,10 @@
+{
+  userBets(id:"myId") {
+  id
+  userAddress
+  userStake
+  redeemed
+  joinedA
+  betData
+  }
+}

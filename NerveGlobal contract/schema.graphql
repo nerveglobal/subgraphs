@@ -1,11 +1,11 @@
-type Challenge @entity {
+type Task @entity {
   id: ID!
   initiatorAddress: Bytes!
   recipientAddress: Bytes!
   amount: BigInt!
   entranceAmount: BigInt!
   description: String!
-  endChallenge: BigInt!
+  endTask: BigInt!
   positiveVotes: BigInt
   negativeVotes: BigInt
   participants: BigInt!
@@ -17,7 +17,7 @@ type Challenge @entity {
   proofLink: String
 }
 
-type UserChallenge @entity {
+type UserTask @entity {
   id: ID!
   userAddress: Bytes!
   userStake: BigInt!
@@ -72,9 +72,9 @@ type UserDashStat @entity {
 
 type GlobalStat @entity {
   id: ID!
-  challengeEarnings: BigInt!
+  taskEarnings: BigInt!
   users: BigInt!
-  challengeCount: BigInt!
+  taskCount: BigInt!
   betWinnings: BigInt!
   betCount: BigInt!
 }

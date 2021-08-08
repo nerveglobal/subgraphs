@@ -1,5 +1,5 @@
 {
-  userDashStats(id:) {
+  userDashStats(id:"myId") {
   id
   userName
   userlocation

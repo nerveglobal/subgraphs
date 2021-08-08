@@ -1,0 +1,10 @@
+{
+  userTasks(id:"myId") {
+  id
+  userAddress
+  userStake
+  voted
+  vote
+  taskData
+  }
+}

@@ -1,0 +1,13 @@
+{
+  userDashStats {
+  id
+  userName
+  userlocation
+  youtube
+  twitter
+  instagram
+  tiktok
+  twitch
+  blacklist
+  }
+}

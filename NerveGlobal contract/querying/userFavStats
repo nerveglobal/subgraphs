@@ -1,0 +1,10 @@
+{
+  userFavStats(id:"myId") {
+  id
+  negativeVotes
+  positiveVotes
+  betBalance
+  betsWon
+  betsLost
+  }
+}

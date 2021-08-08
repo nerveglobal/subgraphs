@@ -1,0 +1,10 @@
+{
+  globalStats {
+  id
+  taskEarnings
+  users
+  taskCount
+  betWinnings
+  betCount
+  }
+}

@@ -1,0 +1,21 @@
+{
+  bets(orderBy: stakeA & stakeB, orderDirection: desc) {
+      id
+      initiatorAddress
+      description
+      participantsA
+      participantsB
+      stakeA
+      stakeB
+      textA
+      textB
+      endBet
+      noMoreBets
+      finished
+      winnerPartyA
+      draw
+      failed
+      language
+      proofLink
+    }
+  }

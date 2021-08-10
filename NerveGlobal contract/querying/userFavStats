@@ -1,5 +1,5 @@
 {
-  userFavStats(id:"myId") {
+  userFavStats(where: {id: "ADDRESS") {
   id
   negativeVotes
   positiveVotes

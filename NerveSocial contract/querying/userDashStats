@@ -1,5 +1,5 @@
 {
-  userDashStats(id: $id) { //oder "my_ID"
+  userDashStats(where: {id: "ADDRESS") {
   id
   userName
   userlocation

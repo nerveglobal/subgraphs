@@ -1,5 +1,5 @@
 {
-  userTasks(id:"myId") {
+  userTasks(where: {id: "ADDRESS") {
   id
   userAddress
   userStake

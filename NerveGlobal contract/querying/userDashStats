@@ -1,5 +1,5 @@
 {
-  userDashStats(id:"myId") {
+  userDashStats(where: {id: "ADDRESS") {
   id
   spent
   earned

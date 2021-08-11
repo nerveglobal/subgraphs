@@ -1,7 +1,8 @@
 {
-  userDashStats(where: {id: "ADDRESS") {
-  id
-  spent
-  earned
+  userDashStats(where: {id: "ADDRESS") 
+  {
+    id
+    spent
+    earned
   }
 }

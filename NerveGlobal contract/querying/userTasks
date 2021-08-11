@@ -1,10 +1,11 @@
 {
-  userTasks(where: {id: "ADDRESS"}) {
-  id
-  userAddress
-  userStake
-  voted
-  vote
-  taskData
+  userTasks(where: {id: "ADDRESS"}) 
+  {
+    id
+    userAddress
+    userStake
+    voted
+    vote
+    taskData
   }
 }

@@ -1,5 +1,5 @@
 {
-  bets(where:{id: "ADDRESS",language:"LANGUAGE",failed:null,finished:null})
+  bets(where:{id: "ADDRESS"})
  {
       id
       initiatorAddress

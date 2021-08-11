@@ -249,7 +249,7 @@ export function handleRecipientRedeemed(event: RecipientRedeemed): void {
 }
 
   /******************************************/
-  /*              TaskProved           */
+  /*              TaskProved                */
   /******************************************/
 
 export function handleTaskProved(event: TaskProved): void {
@@ -260,6 +260,22 @@ export function handleTaskProved(event: TaskProved): void {
   // Task Entity
   let task = Task.load(taskID)
   task.proofLink = event.params.proofLink
+  task.save()
+}
+  
+
+  /******************************************/
+  /*              TaskPromoted              */
+  /******************************************/
+
+export function handleTaskPromoted(event: TaskPromoted): void {
+   
+  let taskID = event.params.taskID.toHex()
+  
+  
+  // Task Entity
+  let task = Task.load(taskID)
+  task.promotion = event.params.amount
   task.save()
 }
 
@@ -461,4 +477,19 @@ export function handleBetProved(event: BetProved): void {
   let bet = Bet.load(event.params.betID.toHex())
   bet.proofLink = event.params.proofLink
   bet.save()
+}
+  
+/******************************************/
+/*              BetPromoted              */
+/******************************************/
+
+export function handleBetPromoted(event: BetPromoted): void {
+   
+  let betID = event.params.betID.toHex()
+  
+  
+  // Bet Entity
+  let bet = Bet.load(betID)
+  bet.promotion = event.params.amount
+  task.save()
 }

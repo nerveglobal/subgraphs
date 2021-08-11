@@ -1,5 +1,6 @@
 {
-  bets(orderBy: stakeA & stakeB, orderDirection: desc) {
+  bets(where:{language:"LANGUAGE",canceled:null,finished:true})
+ {
       id
       initiatorAddress
       description

@@ -23,7 +23,6 @@ type UserTask @entity {
   userStake: BigInt!
   voted: Boolean
   vote: Boolean
-  taskData: Task
 }
 
 type Bet @entity {
@@ -52,7 +51,6 @@ type UserBet @entity {
   userStake: BigInt!
   redeemed: Boolean
   joinedA: Boolean
-  betData: Bet
 }
 
 type UserFavStat @entity {

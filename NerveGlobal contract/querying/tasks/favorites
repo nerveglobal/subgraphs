@@ -1,21 +1,11 @@
 {
-  tasks(where:{id: "ADDRESS"})
+  userTask(where:{id: "ADDRESS"})
    {
      id
-     initiatorAddress
-     recipientAddress
-     amount
-     entranceAmount
-     description
-     endTask
-     positiveVotes
-     negativeVotes
-     participants
-     accepted
-     executed
-     finished
-     canceled
-     language
-     proofLink
+     userAddress
+     userStake
+     voted
+     vote
+     taskData
    }
 }

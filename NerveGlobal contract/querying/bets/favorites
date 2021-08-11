@@ -1,22 +1,22 @@
 {
   bets(where:{id: "ADDRESS"})
- {
-      id
-      initiatorAddress
-      description
-      participantsA
-      participantsB
-      stakeA
-      stakeB
-      textA
-      textB
-      endBet
-      noMoreBets
-      finished
-      winnerPartyA
-      draw
-      failed
-      language
-      proofLink
-    }
+  {
+    id
+    initiatorAddress
+    description
+    participantsA
+    participantsB
+    stakeA
+    stakeB
+    textA
+    textB
+    endBet
+    noMoreBets
+    finished
+    winnerPartyA
+    draw
+    failed
+    language
+    proofLink
   }
+}

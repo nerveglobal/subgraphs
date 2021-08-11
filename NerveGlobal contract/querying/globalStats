@@ -1,10 +1,11 @@
 {
-  globalStats {
-  id
-  taskEarnings
-  users
-  taskCount
-  betWinnings
-  betCount
+  globalStats 
+  {
+    id
+    taskEarnings
+    users
+    taskCount
+    betWinnings
+    betCount
   }
 }

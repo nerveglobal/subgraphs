@@ -80,6 +80,8 @@ export function handleTaskAdded(event: TaskAdded): void {
   task.endTask = event.params.endTask
   task.participants = BigInt.fromI32(1)
   task.language = event.params.language
+  task.lat = event.params.lat
+  task.lon = event.params.lon
   task.save()
 
   
@@ -280,6 +282,8 @@ export function handleBetCreated(event: BetCreated): void {
   bet.textB = event.params.noText 
   bet.endBet = event.params.endBet 
   bet.language = event.params.language 
+  bet.lat = event.params.lat
+  bet.lon = event.params.lon
   bet.save()
 
   

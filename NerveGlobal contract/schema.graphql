@@ -17,6 +17,7 @@ type Task @entity {
   lat: BigInt
   lon: BigInt
   proofLink: String
+  promotion: BigInt
 }
 
 type UserTask @entity {
@@ -47,6 +48,7 @@ type Bet @entity {
   lat: BigInt
   lon: BigInt
   proofLink: String
+  promotion: BigInt
 }
 
 type UserBet @entity {

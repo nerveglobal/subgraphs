@@ -4,18 +4,18 @@ import {
   RecipientRedeemed,
   TaskAdded,
   TaskJoined,
+  TaskPromoted,
   TaskProved,
   UserRedeemed,
-  TaskPromoted,
   Voted,
   BetBailout,
   BetClosed,
   BetCreated,
   BetFinished,
   BetJoined,
+  BetPromoted,
   BetProved,
-  BetRedeemed,
-  BetPromoted
+  BetRedeemed
 } from "../generated/NerveGlobal/NerveGlobal"
 import { 
   Task, 

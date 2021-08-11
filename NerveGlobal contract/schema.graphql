@@ -14,6 +14,8 @@ type Task @entity {
   finished: Boolean
   canceled: Boolean
   language: String!
+  lat: BigInt
+  lon: BigInt
   proofLink: String
 }
 
@@ -42,6 +44,8 @@ type Bet @entity {
   draw: Boolean
   failed: Boolean
   language: String!
+  lat: BigInt
+  lon: BigInt
   proofLink: String
 }
 

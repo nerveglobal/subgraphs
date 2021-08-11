@@ -1,5 +1,5 @@
 {
-  bets(where:{language:"LANGUAGE",canceled:null,finished:false})
+  bets(where:{language:"LANGUAGE",noMoreBets:null,finished:null,failed:null})
   {
       id
       initiatorAddress

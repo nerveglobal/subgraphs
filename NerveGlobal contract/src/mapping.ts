@@ -6,6 +6,7 @@ import {
   TaskJoined,
   TaskProved,
   UserRedeemed,
+  TaskPromoted,
   Voted,
   BetBailout,
   BetClosed,
@@ -13,7 +14,8 @@ import {
   BetFinished,
   BetJoined,
   BetProved,
-  BetRedeemed
+  BetRedeemed,
+  BetPromoted
 } from "../generated/NerveGlobal/NerveGlobal"
 import { 
   Task, 

@@ -86,7 +86,6 @@ export function handleTaskAdded(event: TaskAdded): void {
   log.info('New UserTask entity created: {} - {}', [initiator, taskID])
   userTask.userAddress = event.params.initiator
   userTask.userStake = event.params.amount
-  userTask.taskData = event.params.taskID.toHex()
   userTask.save()                                                               
 
 
@@ -123,7 +122,6 @@ export function handleTaskJoined(event: TaskJoined): void {
   log.info('New UserTask entity created: {} - {}', [participant, taskID])
   userTask.userAddress = event.params.participant
   userTask.userStake = event.params.amount
-  userTask.challangeData = event.params.taskID.toHex()
   userTask.save()                                                       
 
 

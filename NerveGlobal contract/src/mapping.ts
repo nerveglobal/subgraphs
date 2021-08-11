@@ -16,7 +16,7 @@ import {
   BetPromoted,
   BetProved,
   BetRedeemed
-} from "../generated/NerveGlobal/NerveGlobal"
+} from "../generated/Nrv/Nrv"
 import { 
   Task, 
   UserTask,
@@ -110,7 +110,7 @@ export function handleTaskAdded(event: TaskAdded): void {
 
 export function handleTaskJoined(event: TaskJoined): void {
   
-  let taskID = event.params.ID.toHex()
+  let taskID = event.params.taskID.toHex()
   let participant = event.params.participant.toHex()
   
   
@@ -138,7 +138,7 @@ export function handleTaskJoined(event: TaskJoined): void {
   }
   userDashStat.spent = userDashStat.spent.plus(event.params.amount)
   userDashStat.save()                                                                                                                                   
-
+}
 
   /******************************************/
   /*                 Voted                  */
@@ -181,7 +181,7 @@ export function handleVoted(event: Voted): void {
     userFavStat.negativeVotes = userFavStat.negativeVotes.plus(BigInt.fromI32(1))
   }
   userFavStat.save()                                                                                                                                                 
-
+}
 
   /******************************************/
   /*              UserRedeemed              */
@@ -244,7 +244,7 @@ export function handleRecipientRedeemed(event: RecipientRedeemed): void {
     initializeGlobalStat(globalStatId)
     globalStat = GlobalStat.load(globalStatId)
   }
-  globalStat.taskWinnings = globalStat.taskWinnings.plus(event.params.amount) 
+  globalStat.taskEarnings = globalStat.taskEarnings.plus(event.params.amount) 
   globalStat.save()
 }
 
@@ -307,7 +307,6 @@ export function handleBetCreated(event: BetCreated): void {
   let userBet = new UserBet(initiator + "-" + betID)
   log.info('New UserBet entity created: {} - {}', [initiator, betID])
   userBet.userAddress = event.params.initiator 
-  userBet.betData = event.params.betID.toHex()
   userBet.userStake = BigInt.fromI32(0)
   userBet.save()
 
@@ -351,7 +350,6 @@ export function handleBetJoined(event: BetJoined): void {
   userBet.userAddress = event.params.participant 
   userBet.userStake = event.params.amount
   userBet.joinedA = event.params.joinA
-  userBet.betData = event.params.betID.toHex()
   userBet.save()
 
 
@@ -364,7 +362,7 @@ export function handleBetJoined(event: BetJoined): void {
   }
   userFavStat.betBalance = userFavStat.betBalance.minus(event.params.amount)
   userFavStat.save()
-
+  }
 
   /******************************************/
   /*               BetClosed                */
@@ -395,7 +393,7 @@ export function handleBetFinished(event: BetFinished): void {
   bet.winnerPartyA = event.params.winnerPartyA
   bet.draw = event.params.draw 
   bet.save()
-
+}
 
   /******************************************/
   /*               BetRedeemed              */
@@ -480,7 +478,7 @@ export function handleBetProved(event: BetProved): void {
 }
   
 /******************************************/
-/*              BetPromoted              */
+/*              BetPromoted               */
 /******************************************/
 
 export function handleBetPromoted(event: BetPromoted): void {
@@ -491,5 +489,5 @@ export function handleBetPromoted(event: BetPromoted): void {
   // Bet Entity
   let bet = Bet.load(betID)
   bet.promotion = event.params.amount
-  task.save()
+  bet.save()
 }

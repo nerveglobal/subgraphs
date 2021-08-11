@@ -1,10 +1,11 @@
 {
-  userFavStats(where: {id: "ADDRESS") {
-  id
-  negativeVotes
-  positiveVotes
-  betBalance
-  betsWon
-  betsLost
+  userFavStats(where: {id: "ADDRESS") 
+  {
+    id
+    negativeVotes
+    positiveVotes
+    betBalance
+    betsWon
+    betsLost
   }
 }

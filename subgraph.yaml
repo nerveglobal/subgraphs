@@ -37,6 +37,8 @@ dataSources:
           handler: handleBetFinished
         - event: BetJoined(indexed address,indexed uint256,uint256,bool)
           handler: handleBetJoined
+        - event: BetPromoted(indexed uint256,uint256)
+          handler: handleBetPromoted
         - event: BetProved(indexed uint256,string)
           handler: handleBetProved
         - event: BetRedeemed(indexed address,indexed uint256,uint256)
@@ -47,6 +49,8 @@ dataSources:
           handler: handleTaskAdded
         - event: TaskJoined(indexed address,indexed uint256,uint256)
           handler: handleTaskJoined
+        - event: TaskPromoted(indexed uint256,uint256)
+          handler: handleTaskPromoted
         - event: TaskProved(indexed uint256,string)
           handler: handleTaskProved
         - event: UserRedeemed(indexed address,indexed uint256,uint256)

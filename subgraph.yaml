@@ -43,7 +43,7 @@ dataSources:
           handler: handleBetRedeemed
         - event: RecipientRedeemed(indexed address,indexed uint256,uint256)
           handler: handleRecipientRedeemed
-        - event: TaskAdded(indexed address,indexed uint256,indexed address,uint256,string,uint256,string,string,string,string)
+        - event: TaskAdded(indexed address,indexed uint256,indexed address,uint256,string,uint256,string,uint256,uint256)
           handler: handleTaskAdded
         - event: TaskJoined(indexed address,indexed uint256,uint256)
           handler: handleTaskJoined

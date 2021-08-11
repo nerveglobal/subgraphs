@@ -1,20 +1,21 @@
 {
-  tasks(orderBy: amount, orderDirection: desc) {
-      id
-      initiatorAddress
-      recipientAddress
-      amount
-      entranceAmount
-      description
-      endTask
-      positiveVotes
-      negativeVotes
-      participants
-      accepted
-      executed
-      finished
-      canceled
-      language
-      proofLink
-    }
-  }
+  tasks(where:{language:"LANGUAGE",endTask:"TIMESTAMP",finished:null,canceled:null})
+   {
+     id
+     initiatorAddress
+     recipientAddress
+     amount
+     entranceAmount
+     description
+     endTask
+     positiveVotes
+     negativeVotes
+     participants
+     accepted
+     executed
+     finished
+     canceled
+     language
+     proofLink
+   }
+}

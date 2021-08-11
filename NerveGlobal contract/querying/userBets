@@ -1,10 +1,11 @@
 {
-  userBets(where: {id: "ADDRESS") {
-  id
-  userAddress
-  userStake
-  redeemed
-  joinedA
-  betData
+  userBets(where: {id: "ADDRESS") 
+  {
+    id
+    userAddress
+    userStake
+    redeemed
+    joinedA
+    betData
   }
 }

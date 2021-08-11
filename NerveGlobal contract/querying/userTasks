@@ -6,6 +6,5 @@
     userStake
     voted
     vote
-    taskData
   }
 }

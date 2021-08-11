@@ -1,21 +1,11 @@
 {
-  tasks(where:{id: "ADDRESS",finished:true,canceled:true})
+  userTask(where:{id: "ADDRESS",finished:true,canceled:true})
    {
-     id
-     initiatorAddress
-     recipientAddress
-     amount
-     entranceAmount
-     description
-     endTask
-     positiveVotes
-     negativeVotes
-     participants
-     accepted
-     executed
-     finished
-     canceled
-     language
-     proofLink
+    id
+     userAddress
+     userStake
+     voted
+     vote
+     taskData
    }
 }

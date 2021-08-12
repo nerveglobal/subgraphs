@@ -1,8 +1,8 @@
 type UserDashStat @entity {
   id: ID!
   userName: String!
-  userLatitude: BigInt
-  userLongitude: BigInt
+  userLatitude: String!
+  userLongitude: String!
   youtube: String!
   twitter: String!
   instagram: String!

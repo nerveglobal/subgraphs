@@ -5,12 +5,12 @@ schema:
 dataSources:
   #NerveGlobal contract
   - kind: ethereum/contract
-    name: NerveGlobal
+    name: Nrv
     network: ropsten
     source:
-      address: "XXX"
-      abi: NerveGlobal
-      startBlock: 10441829
+      address: "0x080d017Bb7C1BF54f68b77a8F5Ee35479b31a790"
+      abi: Nrv
+      startBlock: 10817191
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -24,8 +24,8 @@ dataSources:
         - UserDashStat
         - GlobalStat
       abis:
-        - name: NerveGlobal
-          file: ./abis/NerveGlobal.json
+        - name: Nrv
+          file: ./abis/Nrv.json
       eventHandlers:
         - event: BetBailout(indexed address,indexed uint256,uint256)
           handler: handleBetBailout
@@ -58,13 +58,13 @@ dataSources:
         - event: Voted(indexed address,indexed uint256,bool,bool)
           handler: handleVoted
       file: ./src/mapping.ts
-      
+
   #NerveSocial contract
   - kind: ethereum/contract
     name: NerveSocial
     network: ropsten
     source:
-      address: "XXX"
+      address: "0x8EB2C4D6F662BAA4Fe4F67f4522bEf348fB6c32E"
       abi: NerveSocial
       startBlock: 10441829
     mapping:
@@ -72,9 +72,9 @@ dataSources:
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - UserDashStat
+        - UserSocialStat
       abis:
-        - name: NerveGlobal
+        - name: NerveSocial
           file: ./abis/NerveSocial.json
       eventHandlers:
         - event: NameRegistered(indexed address,bytes32)
@@ -85,5 +85,4 @@ dataSources:
           handler: handleLocationRegistered
         - event: UserBlacklisted(indexed address,address)
           handler: handleUserBlacklisted
-      file: ./src/mapping.ts
-
+      file: ./src/socialMapping.ts

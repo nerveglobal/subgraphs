@@ -1,5 +1,5 @@
 {
-  tasks(where: {id: "ADDRESS",endTask:"TIMESTAMP",finished:null,canceled:null})  
+  tasks(where: {id: "ADDRESS",endTask_lt: "TIMESTAMP",finished:null,canceled:null})  
    {
      id
      initiatorAddress

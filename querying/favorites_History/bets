@@ -2,7 +2,9 @@
   userBet(where:{id: "ADDRESS",bet.endBet_gt: "TIMESTAMP",finished:true,failed:true})
   {
     id
-    bet
+    bet {
+      endBet
+      ]
     userAddress
     userStake
     redeemed

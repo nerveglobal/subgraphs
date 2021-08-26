@@ -22,6 +22,7 @@ type Task @entity {
 
 type UserTask @entity {
   id: ID!
+  task: Task
   userAddress: Bytes!
   userStake: BigInt!
   voted: Boolean
@@ -53,6 +54,7 @@ type Bet @entity {
 
 type UserBet @entity {
   id: ID!
+  bet: Bet
   userAddress: Bytes!
   userStake: BigInt!
   redeemed: Boolean

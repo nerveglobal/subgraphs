@@ -1,5 +1,5 @@
 {
- bets(where: {id: "ADDRESS",finished:true,failed:true}) 
+ bets(where: {id: "ADDRESS",endBet: >"TIMESTAMP",finished:true,failed:true}) 
   {
     id
     initiatorAddress

@@ -1,5 +1,5 @@
 {
-  tasks(where:{language:"LANGUAGE",endTask:"TIMESTAMP",finished:true,canceled:true})
+  tasks(where:{language:"LANGUAGE",endTask_gt:"TIMESTAMP",finished:true,canceled:true})
    {
      id
      initiatorAddress

@@ -1,5 +1,6 @@
 type Task @entity {
   id: ID!
+  userTask: UserTask @connection
   initiatorAddress: Bytes!
   recipientAddress: Bytes!
   amount: BigInt!
@@ -27,6 +28,8 @@ type UserTask @entity {
   userStake: BigInt!
   voted: Boolean
   vote: Boolean
+  endTask: BigInt!
+  finished: Boolean
 }
 
 type Bet @entity {
@@ -54,11 +57,12 @@ type Bet @entity {
 
 type UserBet @entity {
   id: ID!
-  bet: Bet @connection
   userAddress: Bytes!
   userStake: BigInt!
   redeemed: Boolean
   joinedA: Boolean
+  endBet: BigInt!
+  finished: Boolean
 }
 
 type UserFavStat @entity {

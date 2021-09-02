@@ -1,13 +1,12 @@
 {
-  userBet(where:{id: "ADDRESS",bet.endBet_gt: "TIMESTAMP",finished:true,failed:true})
+  userBet(where:{id: "ADDRESS",endBet_gt: "TIMESTAMP",finished:true})
   {
     id
-    bet {
-      endBet
-      }
     userAddress
     userStake
     redeemed
     joinedA
+    endBet
+    finished
   }
 }

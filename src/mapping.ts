@@ -88,9 +88,9 @@ export function handleTaskAdded(event: TaskAdded): void {
   // UserTask Entity
   let userTask = new UserTask(initiator + "-" + taskID)
   log.info('New UserTask entity created: {} - {}', [initiator, taskID])
-  userTask.task = taskID
   userTask.userAddress = event.params.initiator
   userTask.userStake = event.params.amount
+  userTask.endTask = event.params.endTask
   userTask.save()                                                               
 
 
@@ -125,7 +125,6 @@ export function handleTaskJoined(event: TaskJoined): void {
   // UserTask Entity
   let userTask = new UserTask(participant + "-" + taskID)
   log.info('New UserTask entity created: {} - {}', [participant, taskID])
-  userTask.task = taskID
   userTask.userAddress = event.params.participant
   userTask.userStake = event.params.amount
   userTask.save()                                                       
@@ -167,6 +166,7 @@ export function handleVoted(event: Voted): void {
   let userTask = UserTask.load(participant + "-" + taskID)
   userTask.voted = true
   userTask.vote = event.params.vote
+  userTask.finished = event.params.finished
   userTask.save()                                                                 
   
 
@@ -310,6 +310,7 @@ export function handleBetCreated(event: BetCreated): void {
   log.info('New UserBet entity created: {} - {}', [initiator, betID])
   userBet.userAddress = event.params.initiator 
   userBet.userStake = BigInt.fromI32(0)
+  userBet.endBet = event.params.endBet
   userBet.save()
 
 
@@ -349,7 +350,6 @@ export function handleBetJoined(event: BetJoined): void {
   // UserBet Entity
   let userBet = new UserBet(participant + "-" + betID)
   log.info('New UserBet entity created: {} - {}', [participant, betID])
-  userBet.bet = betID
   userBet.userAddress = event.params.participant 
   userBet.userStake = event.params.amount
   userBet.joinedA = event.params.joinA
@@ -396,6 +396,11 @@ export function handleBetFinished(event: BetFinished): void {
   bet.winnerPartyA = event.params.winnerPartyA
   bet.draw = event.params.draw 
   bet.save()
+
+  // UserBet Entity
+  let userBet = UserBet.load(initiator + "-" + betID)
+  userBet.finished = true 
+  userBet.save()
 }
 
   /******************************************/

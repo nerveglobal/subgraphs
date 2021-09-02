@@ -1,10 +1,12 @@
 {
-  userTask(where:{id: "ADDRESS",finished:true,canceled:true})
+  userTask(where:{id: "ADDRESS",endTask_gt:"TIMESTAMP",finished:true})
    {
     id
      userAddress
      userStake
      voted
      vote
+     endTask
+     finished
    }
 }

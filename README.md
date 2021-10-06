@@ -9,5 +9,5 @@ The Graph exposes a GraphQL endpoint to query the events and entities within the
 
    + upcoming release (mainnet)
    + upcoming release (celo)
-   + upcoming release (matic)
+   + https://thegraph.com/legacy-explorer/subgraph/nerveu/testpoly (matic) **not final**
    + upcoming release (avalanche)

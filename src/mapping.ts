@@ -16,7 +16,7 @@ import {
   BetPromoted,
   BetProved,
   BetRedeemed
-} from "../generated/NerveToken/NerveToken"
+} from "../generated/NerveGlobal/NerveGlobal"
 import { 
   Task, 
   UserTask,

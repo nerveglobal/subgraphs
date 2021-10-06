@@ -16,7 +16,7 @@ import {
   BetPromoted,
   BetProved,
   BetRedeemed
-} from "../generated/Nrv/Nrv"
+} from "../generated/NerveToken/NerveToken"
 import { 
   Task, 
   UserTask,
@@ -46,6 +46,7 @@ function initializeUserDashStat (id: string): void {
   let userDashStat = new UserDashStat(id)
   userDashStat.spent = BigInt.fromI32(0)
   userDashStat.earned = BigInt.fromI32(0)
+  userDashStat.lastUpdate = BigInt.fromI32(0)
   userDashStat.save()
 }
 
@@ -138,6 +139,7 @@ export function handleTaskJoined(event: TaskJoined): void {
     log.info('New UserDashStat entity created: {}', [participant])
   }
   userDashStat.spent = userDashStat.spent.plus(event.params.amount)
+  userDashStat.lastUpdate = event.block.timestamp
   userDashStat.save()                                                                                                                                   
 }
 
@@ -208,6 +210,7 @@ export function handleUserRedeemed(event: UserRedeemed): void {
     userDashStat = UserDashStat.load(participant)
     log.info('New UserDashStat entity created: {}', [participant])
   }
+  userDashStat.lastUpdate = event.block.timestamp
   userDashStat.spent = userDashStat.spent.minus(event.params.amount)
   userDashStat.save()                                                                    
 }

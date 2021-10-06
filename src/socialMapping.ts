@@ -7,7 +7,8 @@ import {
   UserBlacklisted
 } from "../generated/NerveSocial/NerveSocial"
 import {
-  UserSocialStat
+  UserSocialStat,
+  UserDashStat
 } from "../generated/schema"
 
   /******************************************/
@@ -18,14 +19,19 @@ export function handleNameRegistered(event: NameRegistered): void {
 
   let user = event.params.user.toHex()
     
-  //  UserSocialStat Entity
-  let userSocialStat = UserSocialStat.load(user)
-  if(userSocialStat == null) {
-    userSocialStat = new UserSocialStat(user)
-    log.info('New UserSocialStat entity created: {}', [user])
+  //  UserDashStat Entity
+  let userDashStat = UserDashStat.load(user)
+  if(userDashStat == null) {
+    userDashStat = new UserDashStat(user)
+    log.info('New UserDashStat entity created: {}', [user])
+    userDashStat.spent = BigInt.fromI32(0)
+    userDashStat.earned = BigInt.fromI32(0)
+    userDashStat.lastUpdate = BigInt.fromI32(0)
   }
-  userSocialStat.userName = event.params.registeredName.toString()
-  userSocialStat.save()                                                            
+
+  userDashStat.userName = event.params.registeredName.toString()
+  userDashStat.save()     
+
 }
 
   
@@ -45,27 +51,27 @@ export function handleSocialRegistered(event: SocialRegistered): void {
   } 
 
   //let socialLinks: string[] = event.params.socialLinks;
-  let registeredLinks = event.params.registeredLinks;
-  let socialIDs = event.params.socialIDs;
+  let socialLinks = event.params.socialLinks;
+  let socialIds = event.params.socialIds;
 
-  log.info('links: {}', registeredLinks);
+  log.info('links: {}', socialLinks);
 
   //let socialIds: BigInt[] = event.params.socialIds;
-  for(var i = 0; i < socialIDs.length; i++)
+  for(var i = 0; i < socialIds.length; i++)
   { 
 
-    log.info('Social link: {}', [registeredLinks[i]]);
-    log.info('Social ID: {}', [socialIDs[i].toString()]);
-    if(socialIDs[i].equals(BigInt.fromI32(1)))
-      userSocialStat.instagram = registeredLinks[i]
-    if(socialIDs[i] == BigInt.fromI32(2))
-      userSocialStat.twitter = registeredLinks[i]
-    if(socialIDs[i] == BigInt.fromI32(3))
-      userSocialStat.tiktok = registeredLinks[i]
-    if(socialIDs[i] == BigInt.fromI32(4))
-      userSocialStat.twitch = registeredLinks[i]
-    if(socialIDs[i] == BigInt.fromI32(5))
-      userSocialStat.youtube = registeredLinks[i]
+    log.info('Social link: {}', [socialLinks[i]]);
+    log.info('Social ID: {}', [socialIds[i].toString()]);
+    if(socialIds[i].equals(BigInt.fromI32(1)))
+      userSocialStat.instagram = socialLinks[i]
+    if(socialIds[i] == BigInt.fromI32(2))
+      userSocialStat.twitter = socialLinks[i]
+    if(socialIds[i] == BigInt.fromI32(3))
+      userSocialStat.tiktok = socialLinks[i]
+    if(socialIds[i] == BigInt.fromI32(4))
+      userSocialStat.twitch = socialLinks[i]
+    if(socialIds[i] == BigInt.fromI32(5))
+      userSocialStat.youtube = socialLinks[i]
   }
   userSocialStat.save()                                                         
 }

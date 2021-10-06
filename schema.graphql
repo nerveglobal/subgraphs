@@ -76,6 +76,8 @@ type UserFavStat @entity {
 
 type UserDashStat @entity {
   id: ID!
+  lastUpdate: BigInt
+  userName: String
   spent: BigInt!
   earned: BigInt!
 }
@@ -91,7 +93,6 @@ type GlobalStat @entity {
 
 type UserSocialStat @entity {
   id: ID!
-  userName: String
   userLatitude: String
   userLongitude: String
   youtube: String

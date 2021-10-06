@@ -5,12 +5,12 @@ schema:
 dataSources:
   #NerveGlobal contract
   - kind: ethereum/contract
-    name: Nrv
-    network: ropsten
+    name: NerveToken
+    network: matic
     source:
-      address: "0x080d017Bb7C1BF54f68b77a8F5Ee35479b31a790"
-      abi: Nrv
-      startBlock: 10817191
+      address: "0xc745cF14b26D9A33b99AD7931fe6e3731a290301"
+      abi: NerveToken
+      startBlock: 18847670
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -24,8 +24,8 @@ dataSources:
         - UserDashStat
         - GlobalStat
       abis:
-        - name: Nrv
-          file: ./abis/Nrv.json
+        - name: NerveToken
+          file: ./abis/NerveToken.json
       eventHandlers:
         - event: BetBailout(indexed address,indexed uint256,uint256)
           handler: handleBetBailout
@@ -62,11 +62,11 @@ dataSources:
   #NerveSocial contract
   - kind: ethereum/contract
     name: NerveSocial
-    network: ropsten
+    network: matic
     source:
-      address: "0x8EB2C4D6F662BAA4Fe4F67f4522bEf348fB6c32E"
+      address: "0x55E18e2E8226ed64AD8CAb4C45C72702b57e6c7d"
       abi: NerveSocial
-      startBlock: 10441829
+      startBlock: 18848122
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

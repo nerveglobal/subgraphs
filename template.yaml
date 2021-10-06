@@ -24,7 +24,7 @@ dataSources:
         - UserDashStat
         - GlobalStat
       abis:
-        - name: NerveToken
+        - name: NerveGlobal
           file: ./abis/NerveGlobal.json
       eventHandlers:
         - event: BetBailout(indexed address,indexed uint256,uint256)

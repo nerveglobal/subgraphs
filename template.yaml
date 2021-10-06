@@ -6,11 +6,11 @@ dataSources:
   #NerveGlobal contract
   - kind: ethereum/contract
     name: NerveToken
-    network: matic
+    network: {{ network }}
     source:
-      address: "0xc745cF14b26D9A33b99AD7931fe6e3731a290301"
-      abi: NerveToken
-      startBlock: 18847670
+      address: {{ "0x000000000000000000" }}
+      abi: {{ abi }}
+      startBlock: {{ startBlock }}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -25,7 +25,7 @@ dataSources:
         - GlobalStat
       abis:
         - name: NerveToken
-          file: ./abis/NerveToken.json
+          file: ./abis/NerveGlobal.json
       eventHandlers:
         - event: BetBailout(indexed address,indexed uint256,uint256)
           handler: handleBetBailout
@@ -62,11 +62,11 @@ dataSources:
   #NerveSocial contract
   - kind: ethereum/contract
     name: NerveSocial
-    network: matic
+    network: {{ network }}
     source:
       address: "0x55E18e2E8226ed64AD8CAb4C45C72702b57e6c7d"
-      abi: NerveSocial
-      startBlock: 18848122
+      abi: {{ abi }}
+      startBlock: {{ startBlock }}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

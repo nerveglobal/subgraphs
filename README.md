@@ -1,4 +1,4 @@
-# Nerve Global Subgraph sss
+# Nerve Global Subgraph
 This Subgraph sources events from the Nerve Global contracts. More information on all of this can be found at https://thegraph.com/docs/quick-start.
 
 Still a work in progress!

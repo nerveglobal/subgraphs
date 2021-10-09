@@ -46,7 +46,6 @@ function initializeUserDashStat (id: string): void {
   let userDashStat = new UserDashStat(id)
   userDashStat.spent = BigInt.fromI32(0)
   userDashStat.earned = BigInt.fromI32(0)
-  userDashStat.lastUpdate = BigInt.fromI32(0)
   userDashStat.save()
 }
 
@@ -83,7 +82,6 @@ export function handleTaskAdded(event: TaskAdded): void {
   task.language = event.params.language
   task.lat = event.params.lat
   task.lon = event.params.lon
-  task.save()
 
   
   // UserTask Entity
@@ -92,7 +90,9 @@ export function handleTaskAdded(event: TaskAdded): void {
   userTask.userAddress = event.params.initiator
   userTask.userStake = event.params.amount
   userTask.endTask = event.params.endTask
-  userTask.save()                                                               
+  userTask.task = taskID
+  userTask.save()    
+  task.save()  
 
 
   // GlobalStats Entity
@@ -120,7 +120,6 @@ export function handleTaskJoined(event: TaskJoined): void {
   let task = Task.load(taskID)
   task.participants = task.participants.plus(BigInt.fromI32(1))
   task.amount = task.amount.plus(event.params.amount)
-  task.save()
 
   
   // UserTask Entity
@@ -128,7 +127,10 @@ export function handleTaskJoined(event: TaskJoined): void {
   log.info('New UserTask entity created: {} - {}', [participant, taskID])
   userTask.userAddress = event.params.participant
   userTask.userStake = event.params.amount
-  userTask.save()                                                       
+  userTask.endTask = task.endTask
+  userTask.task = taskID
+  userTask.save()  
+  task.save()                                                    
 
 
   // UserDashStat Entity
@@ -139,7 +141,6 @@ export function handleTaskJoined(event: TaskJoined): void {
     log.info('New UserDashStat entity created: {}', [participant])
   }
   userDashStat.spent = userDashStat.spent.plus(event.params.amount)
-  userDashStat.lastUpdate = event.block.timestamp
   userDashStat.save()                                                                                                                                   
 }
 
@@ -210,7 +211,6 @@ export function handleUserRedeemed(event: UserRedeemed): void {
     userDashStat = UserDashStat.load(participant)
     log.info('New UserDashStat entity created: {}', [participant])
   }
-  userDashStat.lastUpdate = event.block.timestamp
   userDashStat.spent = userDashStat.spent.minus(event.params.amount)
   userDashStat.save()                                                                    
 }
@@ -281,7 +281,7 @@ export function handleTaskPromoted(event: TaskPromoted): void {
   // Task Entity
   let task = Task.load(taskID)
   task.promotion = event.params.amount
-  task.save()
+  task.save() 
 }
 
   /******************************************/
@@ -291,13 +291,12 @@ export function handleTaskPromoted(event: TaskPromoted): void {
 export function handleBetCreated(event: BetCreated): void {
 
   let betID = event.params.betID.toHex()
-  let initiator = event.params.initiator.toHex()
   
   
   // Bet Entity
   let bet = new Bet(betID)
   log.info('New Bet entity created: {}', [betID])
-  bet.initiatorAddress = event.params.initiator 
+  bet.initiatorAddress = event.params.initiator
   bet.description = event.params.description 
   bet.textA = event.params.yesText 
   bet.textB = event.params.noText 
@@ -305,18 +304,9 @@ export function handleBetCreated(event: BetCreated): void {
   bet.language = event.params.language 
   bet.lat = event.params.lat
   bet.lon = event.params.lon
-  bet.save()
+  bet.save() 
 
   
-  // UserBet Entity
-  let userBet = new UserBet(initiator + "-" + betID)
-  log.info('New UserBet entity created: {} - {}', [initiator, betID])
-  userBet.userAddress = event.params.initiator 
-  userBet.userStake = BigInt.fromI32(0)
-  userBet.endBet = event.params.endBet
-  userBet.save()
-
-
   // GlobalStats Entity                                                                   
   let globalStatId = "1"
   let globalStat = GlobalStat.load(globalStatId)
@@ -337,7 +327,7 @@ export function handleBetJoined(event: BetJoined): void {
   let betID = event.params.betID.toHex()
   let participant = event.params.participant.toHex()
   
-  
+
   // Bet Entity
   let bet = Bet.load(betID)
   if (event.params.joinA == true) {
@@ -348,14 +338,16 @@ export function handleBetJoined(event: BetJoined): void {
     bet.participantsB = bet.participantsB.plus(BigInt.fromI32(1))
   }
   bet.save()
+ 
 
-  
   // UserBet Entity
   let userBet = new UserBet(participant + "-" + betID)
   log.info('New UserBet entity created: {} - {}', [participant, betID])
   userBet.userAddress = event.params.participant 
   userBet.userStake = event.params.amount
   userBet.joinedA = event.params.joinA
+  userBet.endBet = bet.endBet
+  userBet.bet = betID
   userBet.save()
 
 
@@ -399,6 +391,7 @@ export function handleBetFinished(event: BetFinished): void {
   bet.winnerPartyA = event.params.winnerPartyA
   bet.draw = event.params.draw 
   bet.save()
+
 
   // UserBet Entity
   let userBet = UserBet.load(initiator + "-" + betID)

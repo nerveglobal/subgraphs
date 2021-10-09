@@ -26,7 +26,6 @@ export function handleNameRegistered(event: NameRegistered): void {
     log.info('New UserDashStat entity created: {}', [user])
     userDashStat.spent = BigInt.fromI32(0)
     userDashStat.earned = BigInt.fromI32(0)
-    userDashStat.lastUpdate = BigInt.fromI32(0)
   }
 
   userDashStat.userName = event.params.registeredName.toString()
@@ -78,8 +77,8 @@ export function handleSocialRegistered(event: SocialRegistered): void {
 
 
 /******************************************/
-  /*             LocationRegistered         */
-  /******************************************/
+/*             LocationRegistered         */
+/******************************************/
 
 export function handleLocationRegistered(event: LocationRegistered): void {
 

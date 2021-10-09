@@ -1,0 +1,87 @@
+specVersion: 0.0.2
+repository: https://github.com/nerveglobal/subgraph
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: NerveGlobal
+    network: matic
+    source:
+      address: "0xc745cF14b26D9A33b99AD7931fe6e3731a290301"
+      abi: NerveGlobal
+      startBlock: 19956978
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Task
+        - UserTask
+        - Bet
+        - UserBet
+        - UserFavStat
+        - UserDashStat
+        - GlobalStat
+      abis:
+        - name: NerveGlobal
+          file: NerveGlobal/abis/NerveGlobal.json
+      eventHandlers:
+        - event: BetBailout(indexed address,indexed uint256,uint256)
+          handler: handleBetBailout
+        - event: BetClosed(indexed address,indexed uint256)
+          handler: handleBetClosed
+        - event: BetCreated(indexed address,indexed
+            uint256,string,uint256,string,string,string,uint256,uint256)
+          handler: handleBetCreated
+        - event: BetFinished(indexed address,indexed uint256,bool,bool,bool)
+          handler: handleBetFinished
+        - event: BetJoined(indexed address,indexed uint256,uint256,bool)
+          handler: handleBetJoined
+        - event: BetPromoted(indexed uint256,uint256)
+          handler: handleBetPromoted
+        - event: BetProved(indexed uint256,string)
+          handler: handleBetProved
+        - event: BetRedeemed(indexed address,indexed uint256,uint256)
+          handler: handleBetRedeemed
+        - event: RecipientRedeemed(indexed address,indexed uint256,uint256)
+          handler: handleRecipientRedeemed
+        - event: TaskAdded(indexed address,indexed uint256,indexed
+            address,uint256,string,uint256,string,uint256,uint256)
+          handler: handleTaskAdded
+        - event: TaskJoined(indexed address,indexed uint256,uint256)
+          handler: handleTaskJoined
+        - event: TaskPromoted(indexed uint256,uint256)
+          handler: handleTaskPromoted
+        - event: TaskProved(indexed uint256,string)
+          handler: handleTaskProved
+        - event: UserRedeemed(indexed address,indexed uint256,uint256)
+          handler: handleUserRedeemed
+        - event: Voted(indexed address,indexed uint256,bool,bool)
+          handler: handleVoted
+      file: NerveGlobal/NerveGlobal.wasm
+  - kind: ethereum/contract
+    name: NerveSocial
+    network: matic
+    source:
+      address: "0x55E18e2E8226ed64AD8CAb4C45C72702b57e6c7d"
+      abi: NerveSocial
+      startBlock: 19956978
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - UserSocialStat
+      abis:
+        - name: NerveSocial
+          file: NerveSocial/abis/NerveSocial.json
+      eventHandlers:
+        - event: NameRegistered(indexed address,bytes32)
+          handler: handleNameRegistered
+        - event: SocialRegistered(indexed address,string[],uint256[])
+          handler: handleSocialRegistered
+        - event: LocationRegistered(indexed address,uint256,uint256)
+          handler: handleLocationRegistered
+        - event: UserBlacklisted(indexed address,address)
+          handler: handleUserBlacklisted
+      file: NerveSocial/NerveSocial.wasm

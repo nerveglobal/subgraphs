@@ -344,10 +344,10 @@ export function handleBetJoined(event: BetJoined): void {
   let bet = Bet.load(betID)
   if (event.params.joinA == true) {
     bet.stakeYes = bet.stakeYes.plus(event.params.amount) 
-    bet.participantsA = bet.participantsA.plus(BigInt.fromI32(1)) 
+    bet.participantsYes = bet.participantsYes.plus(BigInt.fromI32(1)) 
   } else {
     bet.stakeNo = bet.stakeNo.plus(event.params.amount) 
-    bet.participantsB = bet.participantsB.plus(BigInt.fromI32(1))
+    bet.participantsNo = bet.participantsNo.plus(BigInt.fromI32(1))
   }
   bet.save()
  

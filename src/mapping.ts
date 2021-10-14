@@ -400,7 +400,7 @@ export function handleBetFinished(event: BetFinished): void {
   let bet = Bet.load(betID)
   bet.finished = true 
   bet.failed = event.params.failed                       
-  bet.winnerPartyA = event.params.winnerPartyA
+  bet.winnerPartyYes = event.params.winnerPartyYes
   bet.draw = event.params.draw 
   bet.save()
 

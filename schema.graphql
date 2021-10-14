@@ -47,7 +47,7 @@ type Bet @entity {
   endBet: BigInt!
   noMoreBets: Boolean
   finished: Boolean
-  winnerPartyA: Boolean
+  winnerPartyYes: Boolean
   draw: Boolean
   failed: Boolean
   language: String!

@@ -67,6 +67,9 @@ export function handleTaskAdded(event: TaskAdded): void {
   
   let taskID = event.params.taskID.toHex()
   let initiator = event.params.initiator.toHex()
+  let recipient = event.params.recipient.toHex()
+  let initiatorDashStat = UserDashStat.load(initiator)
+  let recipientDashStat = UserDashStat.load(recipient)
   
   
   // Task Entity
@@ -82,8 +85,14 @@ export function handleTaskAdded(event: TaskAdded): void {
   task.language = event.params.language
   task.lat = event.params.lat
   task.lon = event.params.lon
+  if(initiatorDashStat != null) {
+    task.initiatorName = initiatorDashStat.userName
+  }
+  if(recipientDashStat != null) {
+    task.recipientName = recipientDashStat.userName
+  }
 
-  
+
   // UserTask Entity
   let userTask = new UserTask(initiator + "-" + taskID)
   log.info('New UserTask entity created: {} - {}', [initiator, taskID])
@@ -291,7 +300,8 @@ export function handleTaskPromoted(event: TaskPromoted): void {
 export function handleBetCreated(event: BetCreated): void {
 
   let betID = event.params.betID.toHex()
-  
+  let initiator = event.params.initiator.toHex()
+  let initiatorDashStat = UserDashStat.load(initiator)
   
   // Bet Entity
   let bet = new Bet(betID)
@@ -304,8 +314,10 @@ export function handleBetCreated(event: BetCreated): void {
   bet.language = event.params.language 
   bet.lat = event.params.lat
   bet.lon = event.params.lon
+  if (initiatorDashStat != null) {
+    bet.initiatorName = initiatorDashStat.userName
+  }
   bet.save() 
-
   
   // GlobalStats Entity                                                                   
   let globalStatId = "1"

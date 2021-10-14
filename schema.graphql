@@ -1,6 +1,5 @@
 type Task @entity {
   id: ID!
-  userTask: UserTask
   initiatorAddress: Bytes!
   initiatorName: String
   recipientAddress: Bytes!
@@ -36,7 +35,6 @@ type UserTask @entity {
 
 type Bet @entity {
   id: ID!
-  userBet: UserBet
   initiatorAddress: Bytes!
   initiatorName: String
   description: String!
@@ -44,8 +42,8 @@ type Bet @entity {
   participantsB: BigInt
   stakeA: BigInt
   stakeB: BigInt
-  textA: String!
-  textB: String!
+  textYes: String!
+  textNo: String!
   endBet: BigInt!
   noMoreBets: Boolean
   finished: Boolean

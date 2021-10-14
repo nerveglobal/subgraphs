@@ -308,8 +308,8 @@ export function handleBetCreated(event: BetCreated): void {
   log.info('New Bet entity created: {}', [betID])
   bet.initiatorAddress = event.params.initiator
   bet.description = event.params.description 
-  bet.textA = event.params.yesText 
-  bet.textB = event.params.noText 
+  bet.textYes = event.params.yesText 
+  bet.textNo = event.params.noText 
   bet.endBet = event.params.endBet 
   bet.language = event.params.language 
   bet.lat = event.params.lat
@@ -343,10 +343,10 @@ export function handleBetJoined(event: BetJoined): void {
   // Bet Entity
   let bet = Bet.load(betID)
   if (event.params.joinA == true) {
-    bet.stakeA = bet.stakeA.plus(event.params.amount) 
+    bet.stakeYes = bet.stakeYes.plus(event.params.amount) 
     bet.participantsA = bet.participantsA.plus(BigInt.fromI32(1)) 
   } else {
-    bet.stakeB = bet.stakeB.plus(event.params.amount) 
+    bet.stakeNo = bet.stakeNo.plus(event.params.amount) 
     bet.participantsB = bet.participantsB.plus(BigInt.fromI32(1))
   }
   bet.save()

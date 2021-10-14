@@ -1,13 +1,13 @@
 {
-  "name": "test1",
+  "name": "nerveglobal",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ test1",
-    "create-local": "graph create --node http://localhost:8020/ test1",
-    "remove-local": "graph remove --node http://localhost:8020/ test1",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 test1"
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ nerveglobal/nerveglobal",
+    "create-local": "graph create --node http://localhost:8020/ nerveglobal/nerveglobal",
+    "remove-local": "graph remove --node http://localhost:8020/ nerveglobal/nerveglobal",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 nerveglobal/nerveglobal"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.21.1",

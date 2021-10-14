@@ -38,10 +38,10 @@ type Bet @entity {
   initiatorAddress: Bytes!
   initiatorName: String
   description: String!
-  participantsA: BigInt
-  participantsB: BigInt
-  stakeA: BigInt
-  stakeB: BigInt
+  participantsYes: BigInt
+  participantsNo: BigInt
+  stakeYes: BigInt
+  stakeNo: BigInt
   textYes: String!
   textNo: String!
   endBet: BigInt!

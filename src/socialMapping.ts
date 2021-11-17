@@ -8,8 +8,10 @@ import {
 } from "../generated/NerveSocial/NerveSocial"
 import {
   UserSocialStat,
-  UserDashStat
+  UserDashStat,
+  GlobalStat
 } from "../generated/schema"
+
 
   /******************************************/
   /*             NameRegistered             */
@@ -24,13 +26,22 @@ export function handleNameRegistered(event: NameRegistered): void {
   if(userDashStat == null) {
     userDashStat = new UserDashStat(user)
     log.info('New UserDashStat entity created: {}', [user])
-    userDashStat.spent = BigInt.fromI32(0)
-    userDashStat.earned = BigInt.fromI32(0)
+  }
+
+  // GlobalStats Entity 
+  if(userDashStat.userName == "") {                                                                  
+    let globalStatId = "1"
+    let globalStat = GlobalStat.load(globalStatId)
+    if(globalStat == null) {
+      globalStat = new GlobalStat(globalStatId)
+      log.info('New GlobalStat entity created: {}', [globalStatId])
+    }
+    globalStat.users = globalStat.users.plus(BigInt.fromI32(1)) 
+    globalStat.save()
   }
 
   userDashStat.userName = event.params.registeredName.toString()
   userDashStat.save()     
-
 }
 
   
@@ -60,16 +71,16 @@ export function handleSocialRegistered(event: SocialRegistered): void {
   { 
 
     log.info('Social link: {}', [socialLinks[i]]);
-    log.info('Social ID: {}', [socialIds[i].toString()]);
-    if(socialIds[i].equals(BigInt.fromI32(1)))
+    log.info('Social ID: {}', [socialIds[i]]);
+    if(socialIds[i] == "1")
       userSocialStat.instagram = socialLinks[i]
-    if(socialIds[i] == BigInt.fromI32(2))
+    if(socialIds[i] == "2")
       userSocialStat.twitter = socialLinks[i]
-    if(socialIds[i] == BigInt.fromI32(3))
+    if(socialIds[i] == "3")
       userSocialStat.tiktok = socialLinks[i]
-    if(socialIds[i] == BigInt.fromI32(4))
+    if(socialIds[i] == "4")
       userSocialStat.twitch = socialLinks[i]
-    if(socialIds[i] == BigInt.fromI32(5))
+    if(socialIds[i] == "5")
       userSocialStat.youtube = socialLinks[i]
   }
   userSocialStat.save()                                                         
@@ -108,6 +119,9 @@ export function handleUserBlacklisted(event: UserBlacklisted): void {
     
   //  UserSocialStat Entity
   let userSocialStat = UserSocialStat.load(user)
+  if (userSocialStat === null) {
+    userSocialStat = new UserSocialStat(user);
+  }
   if(userSocialStat == null) {
     userSocialStat = new UserSocialStat(user)
     log.info('New UserSocialStat entity created: {}', [user])

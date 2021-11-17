@@ -4,7 +4,6 @@ import {
   RecipientRedeemed,
   TaskAdded,
   TaskJoined,
-  TaskPromoted,
   TaskProved,
   UserRedeemed,
   Voted,
@@ -13,7 +12,6 @@ import {
   BetCreated,
   BetFinished,
   BetJoined,
-  BetPromoted,
   BetProved,
   BetRedeemed
 } from "../generated/NerveGlobal/NerveGlobal"
@@ -27,37 +25,6 @@ import {
   GlobalStat
 } from "../generated/schema"
 
-
-  /******************************************/
-  /*             Initialization             */
-  /******************************************/
-
-function initializeUserFavStat (id: string): void {
-  let userFavStat = new UserFavStat(id)
-  userFavStat.negativeVotes = BigInt.fromI32(0)
-  userFavStat.positiveVotes = BigInt.fromI32(0)
-  userFavStat.betBalance = BigInt.fromI32(0)
-  userFavStat.betsWon = BigInt.fromI32(0)
-  userFavStat.betsLost = BigInt.fromI32(0)
-  userFavStat.save()
-}
-
-function initializeUserDashStat (id: string): void {
-  let userDashStat = new UserDashStat(id)
-  userDashStat.spent = BigInt.fromI32(0)
-  userDashStat.earned = BigInt.fromI32(0)
-  userDashStat.save()
-}
-
-function initializeGlobalStat (id: string): void {
-  let globalStat = new GlobalStat(id)
-  globalStat.taskEarnings = BigInt.fromI32(0)
-  globalStat.users = BigInt.fromI32(0)
-  globalStat.taskCount = BigInt.fromI32(0)
-  globalStat.betWinnings = BigInt.fromI32(0)
-  globalStat.betCount = BigInt.fromI32(0)
-  globalStat.save()
-}
 
   /******************************************/
   /*               TaskAdded                */
@@ -108,11 +75,21 @@ export function handleTaskAdded(event: TaskAdded): void {
   let globalStatId = "1"
   let globalStat = GlobalStat.load(globalStatId)
   if(globalStat == null) {
-    initializeGlobalStat(globalStatId)
-    globalStat = GlobalStat.load(globalStatId)
+    globalStat = new GlobalStat(globalStatId)
+    log.info('New GlobalStat entity created: {} - {}', [globalStatId])
   }
   globalStat.taskCount = globalStat.taskCount.plus(BigInt.fromI32(1)) 
   globalStat.save()
+
+  
+  // UserDashStat Entity
+  let userDashStat = UserDashStat.load(initiator)
+  if(userDashStat == null) {
+    userDashStat = new UserDashStat(initiator)
+    log.info('New UserDashStat entity created: {}', [initiator])
+  }
+  userDashStat.spent = userDashStat.spent.plus(event.params.amount)
+  userDashStat.save()   
 }
 
   /******************************************/
@@ -127,6 +104,9 @@ export function handleTaskJoined(event: TaskJoined): void {
   
   // Task Entity
   let task = Task.load(taskID)
+  if (task === null) {
+    task = new Task(taskID);
+  }
   task.participants = task.participants.plus(BigInt.fromI32(1))
   task.amount = task.amount.plus(event.params.amount)
 
@@ -145,8 +125,7 @@ export function handleTaskJoined(event: TaskJoined): void {
   // UserDashStat Entity
   let userDashStat = UserDashStat.load(participant)
   if(userDashStat == null) {
-    initializeUserDashStat(participant)
-    userDashStat = UserDashStat.load(participant)
+    userDashStat = new UserDashStat(participant)
     log.info('New UserDashStat entity created: {}', [participant])
   }
   userDashStat.spent = userDashStat.spent.plus(event.params.amount)
@@ -165,6 +144,9 @@ export function handleVoted(event: Voted): void {
   
   // Task Entity
   let task = Task.load(taskID)
+  if (task === null) {
+    task = new Task(taskID);
+  }
   if (event.params.vote == true) {
     task.positiveVotes = task.positiveVotes.plus(BigInt.fromI32(1))
   } else {
@@ -176,6 +158,9 @@ export function handleVoted(event: Voted): void {
   
   // UserTask Entity
   let userTask = UserTask.load(participant + "-" + taskID)
+  if (userTask === null) {
+    userTask = new UserTask(participant + "-" + taskID);
+  }
   userTask.voted = true
   userTask.vote = event.params.vote
   userTask.finished = event.params.finished
@@ -185,8 +170,7 @@ export function handleVoted(event: Voted): void {
   // UserFavStat Entity
   let userFavStat = UserFavStat.load(participant)
   if(userFavStat == null) {
-    initializeUserFavStat(participant)
-    userFavStat = UserFavStat.load(participant)
+    userFavStat = new UserFavStat(participant)
     log.info('New UserFavStat entity created: {}', [participant])
   }
   if (event.params.vote == true) {
@@ -209,6 +193,9 @@ export function handleUserRedeemed(event: UserRedeemed): void {
   
   // UserTask Entity
   let userTask = UserTask.load(participant + "-" + taskID)
+  if (userTask === null) {
+    userTask = new UserTask(participant + "-" + taskID);
+  }
   userTask.userStake = BigInt.fromI32(0)
   userTask.save()                                                               
 
@@ -216,8 +203,7 @@ export function handleUserRedeemed(event: UserRedeemed): void {
   // UserDashStat Entity
   let userDashStat = UserDashStat.load(participant)
   if(userDashStat == null) {
-    initializeUserDashStat(participant)
-    userDashStat = UserDashStat.load(participant)
+    userDashStat = new UserDashStat(participant)
     log.info('New UserDashStat entity created: {}', [participant])
   }
   userDashStat.spent = userDashStat.spent.minus(event.params.amount)
@@ -236,6 +222,9 @@ export function handleRecipientRedeemed(event: RecipientRedeemed): void {
   
   // Task Entity
   let task = Task.load(taskID)
+  if (task === null) {
+    task = new Task(taskID);
+  }
   task.executed = true
   task.save()
 
@@ -243,8 +232,7 @@ export function handleRecipientRedeemed(event: RecipientRedeemed): void {
   // UserDashStat Entity
   let userDashStat = UserDashStat.load(recipient)
   if(userDashStat == null) {
-    initializeUserDashStat(recipient)
-    userDashStat = UserDashStat.load(recipient)
+    userDashStat = new UserDashStat(recipient)
     log.info('New UserDashStat entity created: {}', [recipient])
   }
   userDashStat.earned = userDashStat.earned.plus(event.params.amount)
@@ -255,8 +243,7 @@ export function handleRecipientRedeemed(event: RecipientRedeemed): void {
   let globalStatId = "1"
   let globalStat = GlobalStat.load(globalStatId)
   if(globalStat == null) {
-    initializeGlobalStat(globalStatId)
-    globalStat = GlobalStat.load(globalStatId)
+    globalStat = new GlobalStat(globalStatId)
   }
   globalStat.taskEarnings = globalStat.taskEarnings.plus(event.params.amount) 
   globalStat.save()
@@ -273,24 +260,11 @@ export function handleTaskProved(event: TaskProved): void {
   
   // Task Entity
   let task = Task.load(taskID)
+  if (task === null) {
+    task = new Task(taskID);
+  }
   task.proofLink = event.params.proofLink
   task.save()
-}
-  
-
-  /******************************************/
-  /*              TaskPromoted              */
-  /******************************************/
-
-export function handleTaskPromoted(event: TaskPromoted): void {
-   
-  let taskID = event.params.taskID.toHex()
-  
-  
-  // Task Entity
-  let task = Task.load(taskID)
-  task.promotion = event.params.amount
-  task.save() 
 }
 
   /******************************************/
@@ -323,8 +297,8 @@ export function handleBetCreated(event: BetCreated): void {
   let globalStatId = "1"
   let globalStat = GlobalStat.load(globalStatId)
   if(globalStat == null) {
-    initializeGlobalStat(globalStatId)
-    globalStat = GlobalStat.load(globalStatId)
+    globalStat = new GlobalStat(globalStatId)
+    log.info('New GlobalStat entity created: {}', [globalStatId])
   }
   globalStat.betCount = globalStat.betCount.plus(BigInt.fromI32(1)) 
   globalStat.save()
@@ -342,7 +316,10 @@ export function handleBetJoined(event: BetJoined): void {
 
   // Bet Entity
   let bet = Bet.load(betID)
-  if (event.params.joinA == true) {
+  if (bet === null) {
+    bet = new Bet(betID);
+  }
+  if (event.params.joinYes == true) {
     bet.stakeYes = bet.stakeYes.plus(event.params.amount) 
     bet.participantsYes = bet.participantsYes.plus(BigInt.fromI32(1)) 
   } else {
@@ -354,10 +331,13 @@ export function handleBetJoined(event: BetJoined): void {
 
   // UserBet Entity
   let userBet = new UserBet(participant + "-" + betID)
+  if (userBet === null) {
+    userBet = new UserBet(participant + "-" + betID);
+  }
   log.info('New UserBet entity created: {} - {}', [participant, betID])
   userBet.userAddress = event.params.participant 
   userBet.userStake = event.params.amount
-  userBet.joinedA = event.params.joinA
+  userBet.joinYes = event.params.joinYes
   userBet.endBet = bet.endBet
   userBet.bet = betID
   userBet.save()
@@ -366,8 +346,7 @@ export function handleBetJoined(event: BetJoined): void {
 // UserFavStat Entity
   let userFavStat = UserFavStat.load(participant)
   if(userFavStat == null) {
-    initializeUserFavStat(participant)
-    userFavStat = UserFavStat.load(participant)
+    userFavStat = new UserFavStat(participant)
     log.info('New UserFavStat entity created: {}', [participant])
   }
   userFavStat.betBalance = userFavStat.betBalance.minus(event.params.amount)
@@ -382,6 +361,9 @@ export function handleBetClosed(event: BetClosed): void {
 
   // Bet Entity
   let bet = Bet.load(event.params.betID.toHex())
+  if (bet === null) {
+    bet = new Bet(event.params.betID.toHex());
+  }
   bet.noMoreBets = true
   bet.save()
 }
@@ -398,6 +380,9 @@ export function handleBetFinished(event: BetFinished): void {
   
   // Bet Entity
   let bet = Bet.load(betID)
+  if (bet === null) {
+    bet = new Bet(betID);
+  }
   bet.finished = true 
   bet.failed = event.params.failed                       
   bet.winnerPartyYes = event.params.winnerPartyYes
@@ -407,6 +392,9 @@ export function handleBetFinished(event: BetFinished): void {
 
   // UserBet Entity
   let userBet = UserBet.load(initiator + "-" + betID)
+  if (userBet === null) {
+    userBet = new UserBet(initiator + "-" + betID);
+  }
   userBet.finished = true 
   userBet.save()
 }
@@ -423,14 +411,19 @@ export function handleBetRedeemed(event: BetRedeemed): void {
 
   // UserBet Entity 1/2
   let userBet = UserBet.load(participant + "-" + betID)
+  if (userBet === null) {
+    userBet = new UserBet(participant + "-" + betID);
+  }
   userBet.redeemed = true
 
 
 // UserFavStat Entity
   let userFavStat = UserFavStat.load(participant)
+  if (userFavStat === null) {
+    userFavStat = new UserFavStat(participant);
+  }
   if(userFavStat == null) {
-    initializeUserFavStat(participant)
-    userFavStat = UserFavStat.load(participant)
+    userFavStat = new UserFavStat(participant)
     log.info('New UserFacStat entity created: {}', [participant])
   }
   userFavStat.betsWon = userFavStat.betsWon.plus(BigInt.fromI32(1)) 
@@ -448,8 +441,7 @@ export function handleBetRedeemed(event: BetRedeemed): void {
   let globalStatId = "1"
   let globalStat = GlobalStat.load(globalStatId)
   if(globalStat == null) {
-    initializeGlobalStat(globalStatId)
-    globalStat = GlobalStat.load(globalStatId)
+    globalStat = new GlobalStat(globalStatId)
   }
   globalStat.betWinnings = globalStat.betWinnings.plus(event.params.profit) 
   globalStat.save()
@@ -467,14 +459,16 @@ export function handleBetBailout(event: BetBailout): void {
   
   // UserBet Entity
   let userBet = UserBet.load(participant + "-" + betID)
+  if (userBet === null) {
+    userBet = new UserBet(participant + "-" + betID);
+  }
   userBet.userStake = BigInt.fromI32(0)
   userBet.save()
 
   // UserFavStat Entity
   let userFavStat = UserFavStat.load(participant)
   if(userFavStat == null) {
-    initializeUserFavStat(participant)
-    userFavStat = UserFavStat.load(participant)
+    userFavStat = new UserFavStat(participant)
     log.info('New UserFavStat entity created: {}', [participant])
   }
   userFavStat.betBalance = userFavStat.betBalance.plus(event.params.userStake)
@@ -489,21 +483,9 @@ export function handleBetProved(event: BetProved): void {
 
   // Bet Entity
   let bet = Bet.load(event.params.betID.toHex())
+  if (bet === null) {
+    bet = new Bet(event.params.betID.toHex());
+  }
   bet.proofLink = event.params.proofLink
-  bet.save()
-}
-  
-/******************************************/
-/*              BetPromoted              */
-/******************************************/
-
-export function handleBetPromoted(event: BetPromoted): void {
-   
-  let betID = event.params.betID.toHex()
-  
-  
-  // Bet Entity
-  let bet = Bet.load(betID)
-  bet.promotion = event.params.amount
   bet.save()
 }

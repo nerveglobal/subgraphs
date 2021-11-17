@@ -60,9 +60,9 @@
 			},
 			{
 				"indexed": false,
-				"internalType": "uint256[]",
+				"internalType": "string[]",
 				"name": "socialIds",
-				"type": "uint256[]"
+				"type": "string[]"
 			}
 		],
 		"name": "SocialRegistered",
@@ -146,9 +146,9 @@
 				"type": "string[]"
 			},
 			{
-				"internalType": "uint256[]",
+				"internalType": "string[]",
 				"name": "socialID",
-				"type": "uint256[]"
+				"type": "string[]"
 			}
 		],
 		"name": "registerSocial",

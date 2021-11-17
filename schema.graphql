@@ -1,25 +1,24 @@
 type Task @entity {
   id: ID!
   initiatorAddress: Bytes!
-  initiatorName: String
+  initiatorName: String!
   recipientAddress: Bytes!
-  recipientName: String
+  recipientName: String!
   amount: BigInt!
   entranceAmount: BigInt!
   description: String!
   endTask: BigInt!
-  positiveVotes: BigInt
-  negativeVotes: BigInt
+  positiveVotes: BigInt!
+  negativeVotes: BigInt!
   participants: BigInt!
-  accepted: Boolean
-  executed: Boolean
-  finished: Boolean
-  canceled: Boolean
+  accepted: Boolean!
+  executed: Boolean!
+  finished: Boolean!
+  canceled: Boolean!
   language: String!
-  lat: BigInt
-  lon: BigInt
-  proofLink: String
-  promotion: BigInt
+  lat: BigInt!
+  lon: BigInt!
+  proofLink: String!
 }
 
 type UserTask @entity {
@@ -27,34 +26,33 @@ type UserTask @entity {
   task: Task @connection
   userAddress: Bytes!
   userStake: BigInt!
-  voted: Boolean
-  vote: Boolean
+  voted: Boolean!
+  vote: Boolean!
   endTask: BigInt!
-  finished: Boolean
+  finished: Boolean!
 }
 
 type Bet @entity {
   id: ID!
   initiatorAddress: Bytes!
-  initiatorName: String
+  initiatorName: String!
   description: String!
-  participantsYes: BigInt
-  participantsNo: BigInt
-  stakeYes: BigInt
-  stakeNo: BigInt
+  participantsYes: BigInt!
+  participantsNo: BigInt!
+  stakeYes: BigInt!
+  stakeNo: BigInt!
   textYes: String!
   textNo: String!
   endBet: BigInt!
-  noMoreBets: Boolean
-  finished: Boolean
-  winnerPartyYes: Boolean
-  draw: Boolean
-  failed: Boolean
+  noMoreBets: Boolean!
+  finished: Boolean!
+  winnerPartyYes: Boolean!
+  draw: Boolean!
+  failed: Boolean!
   language: String!
-  lat: BigInt
-  lon: BigInt
-  proofLink: String
-  promotion: BigInt
+  lat: BigInt!
+  lon: BigInt!
+  proofLink: String!
 }
 
 type UserBet @entity {
@@ -62,10 +60,10 @@ type UserBet @entity {
   bet: Bet @connection
   userAddress: Bytes!
   userStake: BigInt!
-  redeemed: Boolean
-  joinedA: Boolean
+  redeemed: Boolean!
+  joinYes: Boolean!
   endBet: BigInt!
-  finished: Boolean
+  finished: Boolean!
 }
 
 type UserFavStat @entity {
@@ -79,7 +77,7 @@ type UserFavStat @entity {
 
 type UserDashStat @entity {
   id: ID!
-  userName: String
+  userName: String!
   spent: BigInt!
   earned: BigInt!
 }
@@ -95,12 +93,12 @@ type GlobalStat @entity {
 
 type UserSocialStat @entity {
   id: ID!
-  userLatitude: String
-  userLongitude: String
-  youtube: String
-  twitter: String
-  instagram: String
-  tiktok: String
-  twitch: String
-  blacklist: [Bytes!]
+  userLatitude: String!
+  userLongitude: String!
+  youtube: String!
+  twitter: String!
+  instagram: String!
+  tiktok: String!
+  twitch: String!
+  blacklist: [Bytes!]!
 }

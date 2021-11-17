@@ -1,6 +1,12 @@
 [
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_nrvGov",
+				"type": "address"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -127,7 +133,7 @@
 			{
 				"indexed": false,
 				"internalType": "bool",
-				"name": "winnerPartyA",
+				"name": "winnerPartyYes",
 				"type": "bool"
 			},
 			{
@@ -170,30 +176,11 @@
 			{
 				"indexed": false,
 				"internalType": "bool",
-				"name": "joinA",
+				"name": "joinYes",
 				"type": "bool"
 			}
 		],
 		"name": "BetJoined",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "betID",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "BetPromoted",
 		"type": "event"
 	},
 	{
@@ -362,25 +349,6 @@
 			},
 			{
 				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "TaskPromoted",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "taskID",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
 				"internalType": "string",
 				"name": "proofLink",
 				"type": "string"
@@ -448,25 +416,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "addressRegister",
-		"outputs": [
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "uint256",
 				"name": "betID",
 				"type": "uint256"
@@ -485,6 +434,60 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "bets",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "initiator",
+				"type": "address"
+			},
+			{
+				"internalType": "uint40",
+				"name": "endBet",
+				"type": "uint40"
+			},
+			{
+				"internalType": "bool",
+				"name": "winnerPartyYes",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "draw",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "noMoreBets",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "finished",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint80",
+				"name": "stakesYes",
+				"type": "uint80"
+			},
+			{
+				"internalType": "uint80",
+				"name": "stakesNo",
+				"type": "uint80"
 			}
 		],
 		"stateMutability": "view",
@@ -593,7 +596,7 @@
 			},
 			{
 				"internalType": "bool",
-				"name": "winnerPartyA",
+				"name": "winnerPartyYes",
 				"type": "bool"
 			},
 			{
@@ -610,31 +613,13 @@
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "_nrvToken",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_nrvGov",
-				"type": "address"
-			}
-		],
-		"name": "initialize",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "uint256",
 				"name": "betID",
 				"type": "uint256"
 			},
 			{
 				"internalType": "bool",
-				"name": "joinA",
+				"name": "joinYes",
 				"type": "bool"
 			}
 		],
@@ -657,25 +642,6 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"name": "nameRegister",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "nrvGov",
 		"outputs": [
@@ -686,55 +652,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "nrvToken",
-		"outputs": [
-			{
-				"internalType": "contract NrvToken",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "betID",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "promoteBet",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "taskID",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "promoteTask",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -851,6 +768,65 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "tasks",
+		"outputs": [
+			{
+				"internalType": "uint96",
+				"name": "amount",
+				"type": "uint96"
+			},
+			{
+				"internalType": "uint96",
+				"name": "entranceAmount",
+				"type": "uint96"
+			},
+			{
+				"internalType": "uint40",
+				"name": "endTask",
+				"type": "uint40"
+			},
+			{
+				"internalType": "uint24",
+				"name": "participants",
+				"type": "uint24"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "executed",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "finished",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint24",
+				"name": "positiveVotes",
+				"type": "uint24"
+			},
+			{
+				"internalType": "uint24",
+				"name": "negativeVotes",
+				"type": "uint24"
 			}
 		],
 		"stateMutability": "view",

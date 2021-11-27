@@ -338,7 +338,6 @@ export function handleBetJoined(event: BetJoined): void {
   userBet.userAddress = event.params.participant 
   userBet.userStake = event.params.amount
   userBet.joinYes = event.params.joinYes
-  userBet.endBet = bet.endBet
   userBet.bet = betID
   userBet.save()
 
@@ -388,15 +387,6 @@ export function handleBetFinished(event: BetFinished): void {
   bet.winnerPartyYes = event.params.winnerPartyYes
   bet.draw = event.params.draw 
   bet.save()
-
-
-  // UserBet Entity
-  let userBet = UserBet.load(initiator + "-" + betID)
-  if (userBet === null) {
-    userBet = new UserBet(initiator + "-" + betID);
-  }
-  userBet.finished = true 
-  userBet.save()
 }
 
   /******************************************/
@@ -415,7 +405,6 @@ export function handleBetRedeemed(event: BetRedeemed): void {
     userBet = new UserBet(participant + "-" + betID);
   }
   userBet.redeemed = true
-
 
 // UserFavStat Entity
   let userFavStat = UserFavStat.load(participant)

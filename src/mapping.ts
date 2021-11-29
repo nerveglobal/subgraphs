@@ -58,6 +58,7 @@ export function handleTaskAdded(event: TaskAdded): void {
   if(recipientDashStat != null) {
     task.recipientName = recipientDashStat.userName
   }
+  task.blockNumber = event.block.number
 
 
   // UserTask Entity
@@ -67,6 +68,7 @@ export function handleTaskAdded(event: TaskAdded): void {
   userTask.userStake = event.params.amount
   userTask.endTask = event.params.endTask
   userTask.task = taskID
+  userTask.blockNumber = event.block.number
   userTask.save()    
   task.save()  
 
@@ -109,6 +111,7 @@ export function handleTaskJoined(event: TaskJoined): void {
   }
   task.participants = task.participants.plus(BigInt.fromI32(1))
   task.amount = task.amount.plus(event.params.amount)
+  task.blockNumber = event.block.number
 
   
   // UserTask Entity
@@ -118,6 +121,7 @@ export function handleTaskJoined(event: TaskJoined): void {
   userTask.userStake = event.params.amount
   userTask.endTask = task.endTask
   userTask.task = taskID
+  userTask.blockNumber = event.block.number
   userTask.save()  
   task.save()                                                    
 
@@ -153,6 +157,7 @@ export function handleVoted(event: Voted): void {
     task.negativeVotes = task.negativeVotes.plus(BigInt.fromI32(1))
   }
   task.finished = event.params.finished
+  task.blockNumber = event.block.number
   task.save()
 
   
@@ -164,6 +169,7 @@ export function handleVoted(event: Voted): void {
   userTask.voted = true
   userTask.vote = event.params.vote
   userTask.finished = event.params.finished
+  userTask.blockNumber = event.block.number
   userTask.save()                                                                 
   
 
@@ -197,6 +203,7 @@ export function handleUserRedeemed(event: UserRedeemed): void {
     userTask = new UserTask(participant + "-" + taskID);
   }
   userTask.userStake = BigInt.fromI32(0)
+  userTask.blockNumber = event.block.number
   userTask.save()                                                               
 
 
@@ -226,6 +233,7 @@ export function handleRecipientRedeemed(event: RecipientRedeemed): void {
     task = new Task(taskID);
   }
   task.executed = true
+  task.blockNumber = event.block.number
   task.save()
 
 
@@ -291,6 +299,7 @@ export function handleBetCreated(event: BetCreated): void {
   if (initiatorDashStat != null) {
     bet.initiatorName = initiatorDashStat.userName
   }
+  bet.blockNumber = event.block.number
   bet.save() 
   
   // GlobalStats Entity                                                                   
@@ -326,6 +335,8 @@ export function handleBetJoined(event: BetJoined): void {
     bet.stakeNo = bet.stakeNo.plus(event.params.amount) 
     bet.participantsNo = bet.participantsNo.plus(BigInt.fromI32(1))
   }
+  bet.stakeTotal = bet.stakeTotal.plus(event.params.amount)
+  bet.blockNumber = event.block.number
   bet.save()
  
 
@@ -339,6 +350,7 @@ export function handleBetJoined(event: BetJoined): void {
   userBet.userStake = event.params.amount
   userBet.joinYes = event.params.joinYes
   userBet.bet = betID
+  userBet.blockNumber = event.block.number
   userBet.save()
 
 
@@ -364,6 +376,7 @@ export function handleBetClosed(event: BetClosed): void {
     bet = new Bet(event.params.betID.toHex());
   }
   bet.noMoreBets = true
+  bet.blockNumber = event.block.number
   bet.save()
 }
 
@@ -386,6 +399,7 @@ export function handleBetFinished(event: BetFinished): void {
   bet.failed = event.params.failed                       
   bet.winnerPartyYes = event.params.winnerPartyYes
   bet.draw = event.params.draw 
+  bet.blockNumber = event.block.number
   bet.save()
 }
 
@@ -423,6 +437,7 @@ export function handleBetRedeemed(event: BetRedeemed): void {
   
 // UserBet Entity 1/2
   userBet.userStake = BigInt.fromI32(0)
+  userBet.blockNumber = event.block.number
   userBet.save()
 
 
@@ -452,6 +467,7 @@ export function handleBetBailout(event: BetBailout): void {
     userBet = new UserBet(participant + "-" + betID);
   }
   userBet.userStake = BigInt.fromI32(0)
+  userBet.blockNumber = event.block.number
   userBet.save()
 
   // UserFavStat Entity

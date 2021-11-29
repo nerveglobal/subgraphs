@@ -19,6 +19,7 @@ type Task @entity {
   lat: BigInt!
   lon: BigInt!
   proofLink: String!
+  blockNumber: BigInt!
 }
 
 type UserTask @entity {
@@ -30,6 +31,7 @@ type UserTask @entity {
   vote: Boolean!
   endTask: BigInt!
   finished: Boolean!
+  blockNumber: BigInt!
 }
 
 type Bet @entity {
@@ -41,6 +43,7 @@ type Bet @entity {
   participantsNo: BigInt!
   stakeYes: BigInt!
   stakeNo: BigInt!
+  stakeTotal: BigInt!
   textYes: String!
   textNo: String!
   endBet: BigInt!
@@ -53,6 +56,7 @@ type Bet @entity {
   lat: BigInt!
   lon: BigInt!
   proofLink: String!
+  blockNumber: BigInt!
 }
 
 type UserBet @entity {
@@ -64,6 +68,7 @@ type UserBet @entity {
   joinYes: Boolean!
   endBet: BigInt!
   finished: Boolean!
+  blockNumber: BigInt!
 }
 
 type UserFavStat @entity {

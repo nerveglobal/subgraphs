@@ -7,7 +7,7 @@ The Graph exposes a GraphQL endpoint to query the events and entities within the
 
 **Current subgraph locations**:
 
-   + upcoming release (mainnet)
+   + upcoming release (ethereum mainnet)
    + upcoming release (celo)
    + https://thegraph.com/explorer/subgraph/nerveglobal/nerveglobal (matic) **!not final!**
    + upcoming release (avalanche)
@@ -16,13 +16,13 @@ The Graph exposes a GraphQL endpoint to query the events and entities within the
 
    + upcoming release (ethereum mainnet)
      - ``Nerve Global: 0x``
-     - ``Nerve Social 0x``
+     - ``Nerve Social: 0x``
    + upcoming release (celo)
      - ``Nerve Global: 0x``
-     - ``Nerve Social 0x``
+     - ``Nerve Social: 0x``
    + https://thegraph.com/explorer/subgraph/nerveglobal/nerveglobal (matic) **!not final!**
      - ``Nerve Global: 0x``
-     - ``Nerve Social 0x``
+     - ``Nerve Social: 0x``
    + upcoming release (avalanche)
      - ``Nerve Global: 0x``
-     - ``Nerve Social 0x``
+     - ``Nerve Social: 0x``

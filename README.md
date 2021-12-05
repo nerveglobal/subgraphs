@@ -15,7 +15,7 @@ The Graph exposes a GraphQL endpoint to query the events and entities within the
 **Current smart contract sources**:
 
    + upcoming release (ethereum mainnet)
-      ``Nerve Global``
+     - ``Nerve Global``
    +     Nerve Social
    + upcoming release (celo)
    + https://thegraph.com/explorer/subgraph/nerveglobal/nerveglobal (matic) **!not final!**

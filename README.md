@@ -12,6 +12,7 @@ The Graph exposes a GraphQL endpoint to query the events and entities within the
    + https://thegraph.com/explorer/subgraph/nerveglobal/nerveglobal (matic) **!not final!**
    + upcoming release (avalanche)
 
+
 **Current smart contract sources**:
 
    + upcoming release (ethereum mainnet)

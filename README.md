@@ -11,3 +11,10 @@ The Graph exposes a GraphQL endpoint to query the events and entities within the
    + upcoming release (celo)
    + https://thegraph.com/explorer/subgraph/nerveglobal/nerveglobal (matic) **!not final!**
    + upcoming release (avalanche)
+
+**Current smart contract sources**:
+
+   + upcoming release (mainnet)
+   + upcoming release (celo)
+   + https://thegraph.com/explorer/subgraph/nerveglobal/nerveglobal (matic) **!not final!**
+   + upcoming release (avalanche)

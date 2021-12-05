@@ -20,9 +20,9 @@ The Graph exposes a GraphQL endpoint to query the events and entities within the
    + upcoming release (celo)
      - ``Nerve Global: 0x``
      - ``Nerve Social: 0x``
-   + https://thegraph.com/explorer/subgraph/nerveglobal/nerveglobal (matic) **!not final!**
-     - ``Nerve Global: 0x``
-     - ``Nerve Social: 0x``
+   + (matic) **!not final!**
+     - ``Nerve Global: 0x1b6DeB3aD545F15777E4cB857cBEaf135eAE89FC``
+     - ``Nerve Social: 0x79845449ECd6c3511f228f70686a6358e2163506``
    + upcoming release (avalanche)
      - ``Nerve Global: 0x``
      - ``Nerve Social: 0x``

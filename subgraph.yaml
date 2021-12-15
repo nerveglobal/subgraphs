@@ -8,9 +8,9 @@ dataSources:
     name: NerveGlobal
     network: matic
     source:
-      address: "0x1b6DeB3aD545F15777E4cB857cBEaf135eAE89FC"
+      address: "0x94fDFcbD7b864479036a2A36ccEf832DB49b027B"
       abi: NerveGlobal
-      startBlock: 21437132
+      startBlock: 22519071
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -23,6 +23,7 @@ dataSources:
         - UserFavStat
         - UserDashStat
         - GlobalStat
+        - UserSocialStat
       abis:
         - name: NerveGlobal
           file: ./abis/NerveGlobal.json
@@ -53,26 +54,6 @@ dataSources:
           handler: handleUserRedeemed
         - event: Voted(indexed address,indexed uint256,bool,bool)
           handler: handleVoted
-      file: ./src/mapping.ts
-
-  #NerveSocial contract
-  - kind: ethereum/contract
-    name: NerveSocial
-    network: matic
-    source:
-      address: "0x79845449ECd6c3511f228f70686a6358e2163506"
-      abi: NerveSocial
-      startBlock: 21437132
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.5
-      language: wasm/assemblyscript
-      entities:
-        - UserSocialStat
-      abis:
-        - name: NerveSocial
-          file: ./abis/NerveSocial.json
-      eventHandlers:
         - event: NameRegistered(indexed address,bytes32)
           handler: handleNameRegistered
         - event: SocialRegistered(indexed address,string[],string[])
@@ -81,4 +62,4 @@ dataSources:
           handler: handleLocationRegistered
         - event: UserBlacklisted(indexed address,address)
           handler: handleUserBlacklisted
-      file: ./src/socialMapping.ts
+      file: ./src/mapping.ts

@@ -14,7 +14,6 @@ type Task @entity {
   accepted: Boolean!
   executed: Boolean!
   finished: Boolean!
-  canceled: Boolean!
   language: String!
   lat: BigInt!
   lon: BigInt!

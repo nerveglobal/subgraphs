@@ -1,33 +1,35 @@
-# Nerve Global's Subgraphs
+# Nerve Global's Subgraphs Overview
 
-This Subgraphs sources events from the Nerve Global contracts. More information on all of this can be found at https://thegraph.com/docs/quick-start.
+Nerve Global's Subgraphs are designed to source events from the Nerve Global contracts across various networks. Utilizing The Graph, they offer GraphQL endpoints for querying events and entities within the Nerve Global ecosystem. Detailed documentation and a quick-start guide are available at [The Graph Documentation](https://thegraph.com/docs/quick-start).
 
-The Graph exposes a GraphQL endpoint to query the events and entities within the Nerve Global ecosytem.
+## Subgraph Locations
 
-**Current subgraph locations mainnet**:
+### Mainnet
 
-- upcoming release (ethereum mainnet)
-- https://thegraph.com/explorer/subgraph/nerveglobal/nerveglobal (matic) **!not final!**
+- Ethereum Mainnet: Release Pending
+- Polygon (Matic): [Nerve Global Subgraph](https://thegraph.com/explorer/subgraph/nerveglobal/nerveglobal) (Temporary)
 
-**Current subgraph locations testnets**:
+### Testnets
 
-- https://thegraph.com/explorer/subgraph/nerveglobal/nerveglobal-goerli (goerli) **!not final!**
-- upcoming release (mumbai)
+- Goerli: [Nerve Global Subgraph - Goerli](https://thegraph.com/explorer/subgraph/nerveglobal/nerveglobal-goerli) (Temporary)
+- Mumbai: Release Pending
 
-**Current smart contract sources mainnets**:
+## Smart Contract Addresses
 
-- upcoming release (ethereum mainnet)
-  - `Nerve Global: 0x`
-  - `Nerve Social: 0x`
-- (matic) **!not final!**
-  - `Nerve Global: 0x1b6DeB3aD545F15777E4cB857cBEaf135eAE89FC`
-  - `Nerve Social: 0x79845449ECd6c3511f228f70686a6358e2163506`
+### Mainnet
 
-**Current smart contract sources testnets**:
+- Ethereum Mainnet: Release Pending
+  - Nerve Global: TBA
+  - Nerve Social: TBA
+- Polygon (Matic) (Temporary):
+  - Nerve Global: `0x1b6DeB3aD545F15777E4cB857cBEaf135eAE89FC`
+  - Nerve Social: `0x79845449ECd6c3511f228f70686a6358e2163506`
 
-- (matic) **!not final!**
-  - `Nerve Global: 0x1b6DeB3aD545F15777E4cB857cBEaf135eAE89FC`
-  - `Nerve Social: 0x79845449ECd6c3511f228f70686a6358e2163506`
-- upcoming release (mumbai)
-  - `Nerve Global: 0x`
-  - `Nerve Social: 0x`
+### Testnets
+
+- Goerli (Temporary):
+  - Nerve Global: `0x1b6DeB3aD545F15777E4cB857cBEaf135eAE89FC`
+  - Nerve Social: `0x79845449ECd6c3511f228f70686a6358e2163506`
+- Mumbai: Release Pending
+  - Nerve Global: TBA
+  - Nerve Social: TBA

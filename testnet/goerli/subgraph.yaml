@@ -1,0 +1,49 @@
+specVersion: 0.0.2
+repository: https://github.com/nerveglobal/subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  #NerveGlobal contract
+  - kind: ethereum/contract
+    name: NerveGlobal
+    network: goerli
+    source:
+      address: '0xd0d83FFcF0102E5cea570e565d8f5dFA2086C39C'
+      abi: NerveGlobal
+      startBlock: 8498035
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Task
+        - UserTask
+        - UserFavStat
+        - UserDashStat
+        - GlobalStat
+        - UserSocialStat
+      abis:
+        - name: NerveGlobal
+          file: ./abis/NerveGlobal.json
+      eventHandlers:
+        - event: RecipientRedeemed(indexed address,indexed uint256,uint256)
+          handler: handleRecipientRedeemed
+        - event: TaskAdded(indexed address,indexed uint256,indexed address,uint256,uint256,string,uint256,string,string,string)
+          handler: handleTaskAdded
+        - event: TaskJoined(indexed address,indexed uint256,uint256)
+          handler: handleTaskJoined
+        - event: TaskProved(indexed uint256,string)
+          handler: handleTaskProved
+        - event: UserRedeemed(indexed address,indexed uint256,uint256)
+          handler: handleUserRedeemed
+        - event: Voted(indexed address,indexed uint256,bool,bool)
+          handler: handleVoted
+        - event: NameRegistered(indexed address,bytes32)
+          handler: handleNameRegistered
+        - event: SocialRegistered(indexed address,string[],string[])
+          handler: handleSocialRegistered
+        - event: LocationRegistered(indexed address,string,string)
+          handler: handleLocationRegistered
+        - event: UserBlacklisted(indexed address,address)
+          handler: handleUserBlacklisted
+      file: ./src/mapping.ts

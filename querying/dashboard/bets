@@ -1,0 +1,22 @@
+{
+  bets(where: {id: "ADDRESS",endBet_lt:"TIMESTAMP",finished:null,failed:null}) 
+  {
+    id
+    initiatorAddress
+    description
+    participantsA
+    participantsB
+    stakeA
+    stakeB
+    textA
+    textB
+    endBet
+    noMoreBets
+    finished
+    winnerPartyA
+    draw
+    failed
+    language
+    proofLink
+  }
+}

@@ -1,0 +1,10 @@
+{
+  userTask(where:{id: "ADDRESS"})
+   {
+     id
+     userAddress
+     userStake
+     voted
+     vote
+   }
+}

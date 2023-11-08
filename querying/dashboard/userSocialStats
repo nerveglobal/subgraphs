@@ -1,0 +1,14 @@
+{
+	userSocialStats(where: {id: "ADDRESS") {
+    id
+    userName
+    userLatitude
+    userLongitude
+    youtube
+    twitter
+    instagram
+    tiktok
+    twitch
+    blacklist
+  }
+}

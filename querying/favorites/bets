@@ -1,0 +1,10 @@
+{
+  userBet(where:{id: "ADDRESS"})
+  {
+    id
+    userAddress
+    userStake
+    redeemed
+    joinedA
+  }
+}

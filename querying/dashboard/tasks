@@ -1,0 +1,21 @@
+{
+  tasks(where: {id: "ADDRESS",endTask_lt: "TIMESTAMP",finished:null,canceled:null})  
+   {
+     id
+     initiatorAddress
+     recipientAddress
+     amount
+     entranceAmount
+     description
+     endTask
+     positiveVotes
+     negativeVotes
+     participants
+     accepted
+     executed
+     finished
+     canceled
+     language
+     proofLink
+   }
+}

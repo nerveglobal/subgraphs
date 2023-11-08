@@ -1,0 +1,8 @@
+{
+  userDashStats(where: {id: "ADDRESS") 
+  {
+    id
+    spent
+    earned
+  }
+}

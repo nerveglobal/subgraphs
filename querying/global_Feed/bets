@@ -1,0 +1,22 @@
+{
+  bets(where:{language:"LANGUAGE",endBet_lt:"TIMESTAMP",noMoreBets:null,finished:null,failed:null})
+  {
+    id
+    initiatorAddress
+    description
+    participantsA
+    participantsB
+    stakeA
+    stakeB
+    textA
+    textB
+    endBet
+    noMoreBets
+    finished
+    winnerPartyA
+    draw
+    failed
+    language
+    proofLink
+  }
+}

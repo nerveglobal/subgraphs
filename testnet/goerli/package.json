@@ -1,0 +1,18 @@
+{
+	"name": "nerveglobal-goerli",
+	"license": "UNLICENSED",
+	"scripts": {
+		"codegen": "graph codegen",
+		"build": "graph build",
+		"deploy": "graph deploy --debug --access-token '******' --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ nerveglobal/nerveglobal",
+		"deploy-contabo": "graph deploy --debug --node http://vmi368864.contaboserver.net:8020/ --ipfs http://vmi368864.contaboserver.net:5001 nerveglobal/nerveglobal subgraph.yaml",
+		"deploy-jan": "graph deploy --debug --access-token 'c8ef9b9513e549469aa338b4313b00c8' --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ jannerveglobal/nerve-global",
+		"create-local": "graph create --node http://localhost:8020/ nerveglobal/nerveglobal",
+		"remove-local": "graph remove --node http://localhost:8020/ nerveglobal/nerveglobal",
+		"deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 nerveglobal/nerveglobal"
+	},
+	"dependencies": {
+		"@graphprotocol/graph-cli": "0.22.4",
+		"@graphprotocol/graph-ts": "0.22.1"
+	}
+}

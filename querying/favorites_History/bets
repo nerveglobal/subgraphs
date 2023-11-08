@@ -1,0 +1,12 @@
+{
+  userBet(where:{id: "ADDRESS",endBet_gt: "TIMESTAMP",finished:true})
+  {
+    id
+    userAddress
+    userStake
+    redeemed
+    joinedA
+    endBet
+    finished
+  }
+}

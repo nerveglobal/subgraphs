@@ -1,0 +1,21 @@
+{
+  tasks(where:{language:"LANGUAGE",endTask_gt:"TIMESTAMP",finished:true,canceled:true})
+   {
+     id
+     initiatorAddress
+     recipientAddress
+     amount
+     entranceAmount
+     description
+     endTask
+     positiveVotes
+     negativeVotes
+     participants
+     accepted
+     executed
+     finished
+     canceled
+     language
+     proofLink
+   }
+}

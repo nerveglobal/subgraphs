@@ -1,0 +1,79 @@
+type Task @entity {
+	id: ID!
+	initiatorAddress: Bytes!
+	initiatorName: String!
+	recipientAddress: Bytes!
+	recipientName: String!
+	amount: BigInt!
+	entranceAmount: BigInt!
+	description: String!
+	endTask: BigInt!
+	positiveVotes: BigInt!
+	negativeVotes: BigInt!
+	participants: BigInt!
+	accepted: Boolean!
+	executed: Boolean!
+	finished: Boolean!
+	language: String!
+	taskLatitude: String!
+	taskLongitude: String!
+	proofLink: String!
+	blockNumber: BigInt!
+	chainId: BigInt!
+}
+
+type UserTask @entity {
+	id: ID!
+	task: Task @connection
+	userAddress: Bytes!
+	userStake: BigInt!
+	voted: Boolean!
+	vote: Boolean!
+	endTask: BigInt!
+	finished: Boolean!
+	blockNumber: BigInt!
+}
+
+type UserFavStat @entity {
+	id: ID!
+	negativeVotes: BigInt!
+	positiveVotes: BigInt!
+}
+
+type UserDashStat @entity {
+	id: ID!
+	userSocialStat: UserSocialStat @connection
+	userName: String!
+	spent: BigInt!
+	earned: BigInt!
+	lastUpdate: BigInt!
+}
+
+type GlobalStat @entity {
+	id: ID!
+	taskEarnings: BigInt!
+	userCount: BigInt!
+	users: [GlobalUser!] @derivedFrom(field: "globalStat")
+	taskCount: BigInt!
+}
+
+type GlobalUser @entity {
+	id: ID!
+	userAddress: Bytes!
+	userName: String!
+	globalStat: GlobalStat @connection
+}
+
+type UserSocialStat @entity {
+	id: ID!
+	userName: String!
+	userLatitude: String!
+	userLongitude: String!
+	youtube: String!
+	twitter: String!
+	instagram: String!
+	tiktok: String!
+	twitch: String!
+	blacklist: [Bytes!]!
+	lastUpdate: BigInt!
+}

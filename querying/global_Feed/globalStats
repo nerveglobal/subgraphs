@@ -1,0 +1,12 @@
+{
+  globalStats(where:{language:"LANGUAGE"})
+
+  {
+    id
+    taskEarnings
+    users
+    taskCount
+    betWinnings
+    betCount
+  }
+}

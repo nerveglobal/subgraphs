@@ -20,16 +20,12 @@ Nerve Global's Subgraphs are designed to source events from the Nerve Global con
 
 - Ethereum Mainnet: Release Pending
   - Nerve Global: TBA
-  - Nerve Social: TBA
 - Polygon (Matic) (Temporary):
-  - Nerve Global: `0x1b6DeB3aD545F15777E4cB857cBEaf135eAE89FC`
-  - Nerve Social: `0x79845449ECd6c3511f228f70686a6358e2163506`
+  - Nerve Global: [0x91596b44543016ddb5d410a51619d5552961a23b](https://polygonscan.com/address/0x91596b44543016ddb5d410a51619d5552961a23b#code)
 
 ### Testnets
 
 - Goerli (Temporary):
-  - Nerve Global: `0x1b6DeB3aD545F15777E4cB857cBEaf135eAE89FC`
-  - Nerve Social: `0x79845449ECd6c3511f228f70686a6358e2163506`
+  - Nerve Global: [0xd0d83FFcF0102E5cea570e565d8f5dFA2086C39C](https://goerli.etherscan.io/address/0xd0d83FFcF0102E5cea570e565d8f5dFA2086C39C#code)
 - Mumbai: Release Pending
   - Nerve Global: TBA
-  - Nerve Social: TBA

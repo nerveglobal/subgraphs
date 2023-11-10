@@ -26,6 +26,7 @@ type UserTask @entity {
 	id: ID!
 	task: Task @connection
 	userAddress: Bytes!
+	userName: String!
 	userStake: BigInt!
 	voted: Boolean!
 	vote: Boolean!

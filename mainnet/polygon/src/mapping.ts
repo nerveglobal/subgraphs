@@ -102,6 +102,7 @@ export function handleTaskAdded(event: TaskAdded): void {
 export function handleTaskJoined(event: TaskJoined): void {
 	let taskID = event.params.taskID.toHex();
 	let participant = event.params.participant.toHex();
+	let participantDashStat = UserDashStat.load(participant);
 
 	// Task Entity
 	let task = Task.load(taskID);
@@ -116,6 +117,9 @@ export function handleTaskJoined(event: TaskJoined): void {
 	let userTask = new UserTask(participant + '-' + taskID);
 	log.info('New UserTask entity created: {} - {}', [participant, taskID]);
 	userTask.userAddress = event.params.participant;
+	if (participantDashStat != null) {
+		userTask.userName = participantDashStat.userName;
+	}
 	userTask.userStake = event.params.amount;
 	userTask.endTask = task.endTask;
 	userTask.task = taskID;
